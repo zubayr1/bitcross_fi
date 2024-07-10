@@ -1,39 +1,58 @@
-
+/* Define the font styles */
 .heading {
-    font-size: 1.7rem; /* Default to phone size */
-  }
-  
-  /* Tablet styles */
-  @media (min-width: 768px) {
-    .heading {
-      font-size: 4rem; /* Tablet size */
-    }
-  }
-  
-  /* Computer styles */
-  @media (min-width: 1024px) {
-    .heading {
-      font-size: 7rem; /* Computer size */
-    }
-  }
+  font-family: 'Railway', sans-serif;
+  font-weight: 800; /* Extra bold */
+  color: white;
+  margin: 0;
+  line-height: 1;
+}
 
-  
+/* Default for mobile */
+.heading {
+  font-size: 60px;
+  text-align: center;
+}
+
+/* For tablet */
+@media only screen and (min-width: 768px) {
+  .heading {
+    font-size: 64px;
+  }
+}
+
+/* For computer */
+@media only screen and (min-width: 992px) {
+  .heading {
+    font-size: 82px;
+    text-align: left;
+  }
+}
+
+/* Subheading styles */
 .subheading {
-    font-size: 1.2rem; /* Default to phone size */
+  font-family: 'Railway', sans-serif;
+  font-weight: 500; /* Medium */
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+/* Default for mobile */
+.subheading {
+  font-size: 18px;
+}
+
+/* For tablet */
+@media only screen and (min-width: 768px) {
+  .subheading {
+    font-size: 18px;
   }
-  
-  /* Tablet styles */
-  @media (min-width: 768px) {
-    .subheading {
-      font-size: 1rem; /* Tablet size */
-    }
+}
+
+/* For computer */
+@media only screen and (min-width: 992px) {
+  .subheading {
+    font-size: 17.6px;
+    text-align: left;
   }
-  
-  /* Computer styles */
-  @media (min-width: 1024px) {
-    .subheading {
-      font-size: 1.5rem; /* Computer size */
-    }
-  }
-  
-  
+}

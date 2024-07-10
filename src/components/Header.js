@@ -16,17 +16,17 @@ function Header() {
     const [currentLocation, setCurrentLocation] = useState('/');
 
     const handleButtonClick = () =>
-    {        
+    {
         if(currentLocation === '/')
         {
             navigate('/trade');
         }
-        else 
+        else
         {
             navigate('/');
         }
     }
-    
+
     useEffect(() => {
         setCurrentLocation(location.pathname);
       }, [location]);
@@ -55,7 +55,7 @@ function Header() {
                     </Grid>
                 </Grid.Column>
 
-                <Grid.Column width={5} textAlign='right'>                    
+                <Grid.Column width={5} textAlign='right'>
                     <Button onClick={handleButtonClick} style={{ backgroundColor: '#584C22', color: 'white' }}>
                         {currentLocation === '/' ? (
                             <>
@@ -107,27 +107,14 @@ function Header() {
             </Grid.Row>
 
 
-            
+
             <Grid.Row only='mobile'>
-                <Grid.Column width={4}>
-                    <Image src={logo} size='small' />
-                </Grid.Column>
-                
-                <Grid.Column width={9} textAlign='right'>
-                    <Button onClick={handleButtonClick} style={{ backgroundColor: '#584C22', color: 'white' }}>
-                            {currentLocation === '/' ? (
-                                <>
-                                Launch App
-                                <Image src={launch_icon} avatar />
-                                </>
-                            ) : (
-                                'Back'
-                            )}
-                        </Button>
+                <Grid.Column width={5} floated='left' style={{paddingLeft:'10%'}}>
+                    <Image src={logo} size='small' floated='left'/>
                 </Grid.Column>
 
             </Grid.Row>
-            
+
         </Grid>
     </div>
   )

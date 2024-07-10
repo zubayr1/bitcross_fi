@@ -1,0 +1,76 @@
+/* Define the font styles for feature headings */
+.feature-heading {
+    font-family: 'Railway', sans-serif;
+    font-weight: 600; /* Semi-bold */
+    color: white;
+    margin: 0;
+    text-align: center; /* Center align text */
+  }
+
+  /* Default for mobile */
+  .feature-heading {
+    font-size: 15px;
+    margin-bottom: 5px; /* Decrease space below heading */
+  }
+
+  /* For tablet */
+  @media only screen and (min-width: 768px) {
+    .feature-heading {
+      font-size: 16.8px;
+      margin-bottom: 5px; /* Decrease space below heading */
+    }
+  }
+
+  /* For computer */
+  @media only screen and (min-width: 992px) {
+    .feature-heading {
+      font-size: 18.4px;
+      margin-bottom: 5px; /* Decrease space below heading */
+    }
+  }
+
+  /* Define the font styles for feature texts */
+  .feature-text {
+    font-family: 'Railway', sans-serif;
+    font-weight: 500; /* Medium */
+    color: #b3b1c4;
+    margin: 0;
+    text-align: center; /* Center align text */
+    line-height: 1.2; /* Adjust line height */
+  }
+
+  /* Default for mobile */
+  .feature-text {
+    font-size: 13px;
+  }
+
+  /* For tablet */
+  @media only screen and (min-width: 768px) {
+    .feature-text {
+      font-size: 14.7px;
+    }
+  }
+
+  /* For computer */
+  @media only screen and (min-width: 992px) {
+    .feature-text {
+      font-size: 15.7px;
+    }
+  }
+
+  /* Style for feature containers */
+  .feature-container {
+    background-color: #1f1f21;
+    padding: 8%;
+    border-radius: 5%;
+    height: 150px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .feature-container {
+      padding: 2%;
+      margin-left: 12%;
+      margin-right: 12%;
+      text-align: center;
+    }
+  }

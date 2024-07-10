@@ -1,5 +1,5 @@
-import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import React from 'react';
+import { Grid, Image } from 'semantic-ui-react';
 import rectangle from '../assets/rectangle.svg';
 
 import './landing.css';
@@ -7,18 +7,17 @@ import LandingFeatures from './LandingFeatures';
 
 function Landing() {
   return (
-    <div style={{padding:'5%', overflow:'hidden'}}>
+    <div style={{padding:'6%', overflow:'hidden'}}>
         <Grid centered>
-            <Grid.Row only='computer' style={{padding:'5%'}}>            
+            <Grid.Row only='computer' style={{padding:'5%'}}>
                 <Grid.Column width={10} verticalAlign='middle'>
-                    <Grid centered>
+                    <Grid >
                         <Grid.Row>
-                            <p className='heading' style={{color:'white', textAlign:'left', margin: 0, lineHeight:'1' }}>ATOMIC EXECUTION WITH ZK SECURITY</p>
-                            
+                            <p className='heading'>ATOMIC EXECUTION WITH ZK SECURITY</p>
                         </Grid.Row>
 
                         <Grid.Row>
-                            <p className='subheading' style={{color:'white', textAlign:'left',}}>Bringing Bitcoin to DeFi with the Trustless Interoperability </p>
+                            <p className='subheading'>Bringing Bitcoin to DeFi with the Trustless Interoperability</p>
                         </Grid.Row>
 
                         <Grid.Row>
@@ -34,8 +33,7 @@ function Landing() {
                 </Grid.Column>
             </Grid.Row>
 
-
-            <Grid.Row only='tablet'> 
+            <Grid.Row only='tablet'>
                 <Grid>
                     <Grid.Row>
                         <Grid centered>
@@ -44,25 +42,22 @@ function Landing() {
                             </Grid.Row>
 
                             <Grid.Row>
-                                <p className='heading' style={{color:'white', textAlign:'center', margin: 0, lineHeight:'1' }}>ATOMIC EXECUTION WITH ZK SECURITY</p>
-                                
+                                <p className='heading'>ATOMIC EXECUTION WITH ZK SECURITY</p>
                             </Grid.Row>
 
                             <Grid.Row>
-                                <p className='subheading' style={{color:'white', textAlign:'center',}}>Bringing Bitcoin to DeFi with the Trustless Interoperability </p>
+                                <p className='subheading'>Bringing Bitcoin to DeFi with the Trustless Interoperability</p>
                             </Grid.Row>
 
                             <Grid.Row centered>
                                 <LandingFeatures />
                             </Grid.Row>
                         </Grid>
-
                     </Grid.Row>
-                    
-                </Grid>      
+                </Grid>
             </Grid.Row>
 
-            <Grid.Row only='mobile' style={{padding:'5%'}}> 
+            <Grid.Row only='mobile' style={{padding:'5%'}}>
                 <Grid>
                     <Grid.Row>
                         <Grid centered>
@@ -71,26 +66,23 @@ function Landing() {
                             </Grid.Row>
 
                             <Grid.Row>
-                                <p className='heading' style={{color:'white', textAlign:'center', margin: 0, lineHeight:'1' }}>ATOMIC EXECUTION WITH ZK SECURITY</p>
-                                
+                                <p className='heading'>ATOMIC EXECUTION WITH ZK SECURITY</p>
                             </Grid.Row>
 
                             <Grid.Row>
-                                <p className='subheading' style={{color:'white', textAlign:'center',}}>Bringing Bitcoin to DeFi with the Trustless Interoperability </p>
+                                <p className='subheading'>Bringing Bitcoin to DeFi with the Trustless Interoperability</p>
                             </Grid.Row>
 
                             <Grid.Row centered>
                                 <LandingFeatures />
                             </Grid.Row>
                         </Grid>
-
                     </Grid.Row>
-                    
-                </Grid>                
+                </Grid>
             </Grid.Row>
         </Grid>
     </div>
-  )
+  );
 }
 
-export default Landing
+export default Landing;
