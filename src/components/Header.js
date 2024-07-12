@@ -71,11 +71,11 @@ function Header() {
 
 
             <Grid.Row only='tablet'>
-                <Grid.Column width={4}>
+                <Grid.Column width={4}  floated='left' style={{paddingLeft:'10%'}}>
                     <Image src={logo} size='small' />
                 </Grid.Column>
 
-                <Grid.Column width={5}>
+                <Grid.Column width={7} floated='right'>
                     <Grid>
                         <Grid.Column width={3}>
                             <Image src={telegram} size='mini' />
@@ -91,30 +91,14 @@ function Header() {
                     </Grid>
                 </Grid.Column>
 
-                <Grid.Column width={4} textAlign='right'>
-                    <Button onClick={handleButtonClick} style={{ backgroundColor: '#584C22', color: 'white' }}>
-                            {currentLocation === '/' ? (
-                                <>
-                                Launch App
-                                <Image src={launch_icon} avatar />
-                                </>
-                            ) : (
-                                'Back'
-                            )}
-                        </Button>
-                </Grid.Column>
-
             </Grid.Row>
-
 
 
             <Grid.Row only='mobile'>
                 <Grid.Column width={5} floated='left' style={{paddingLeft:'10%'}}>
                     <Image src={logo} size='small' floated='left'/>
                 </Grid.Column>
-
             </Grid.Row>
-
         </Grid>
     </div>
   )
