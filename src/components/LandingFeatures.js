@@ -11,85 +11,96 @@ function LandingFeatures() {
     <div style={{ paddingTop: '5%' }}>
       <Grid centered>
         <Grid.Row only="computer tablet">
-          <Grid.Column width={5}>
-            <div className="feature-container">
-              <Grid>
-                <Grid.Column width={5} verticalAlign="middle">
-                  <Image src={atomic_swap} />
-                </Grid.Column>
-                <Grid.Column width={11}>
-                  <Grid centered>
-                    <Grid.Row textAlign="middle">
-                      <p className="feature-heading">Atomic Swap</p>
-                    </Grid.Row>
-                    <Grid.Row style={{marginTop:'-7%'}}>
-                      <p className="feature-text">
-                        Move assets between chains without any trusted intermediaries
-                      </p>
-                    </Grid.Row>
-                  </Grid>
-                </Grid.Column>
-              </Grid>
+          <div className="feature-wrapper">
+            <div className="feature-column">
+              <div className="feature-container">
+                <Grid className="feature-content">
+                  <Grid.Column width={5} verticalAlign="middle">
+                    <Image src={atomic_swap} style={{ verticalAlign: 'middle' }} />
+                  </Grid.Column>
+                  <Grid.Column width={11}>
+                    <Grid centered>
+                      <Grid.Row>
+                        <p className="feature-heading">Atomic Swap</p>
+                      </Grid.Row>
+                      <Grid.Row style={{ marginTop: '-5%' }}>
+                        <Grid.Column width={16}>
+                          <p className="feature-text">
+                            Move assets between chains without any trusted intermediaries
+                          </p>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                  </Grid.Column>
+                </Grid>
+              </div>
             </div>
-          </Grid.Column>
-          <Grid.Column width={5}>
-            <div className="feature-container">
-              <Grid>
-                <Grid.Column width={5} verticalAlign="middle">
-                  <Image src={dca} />
-                </Grid.Column>
-                <Grid.Column width={11} verticalAlign="middle">
-                  <Grid centered>
-                    <Grid.Row verticalAlign="middle">
-                      <p className="feature-heading">DCA</p>
-                    </Grid.Row>
-                    <Grid.Row style={{marginTop:'-7%'}}>
-                      <p className="feature-text">
-                        Enabling users to generate consistent profit by automating their trades
-                      </p>
-                    </Grid.Row>
-                  </Grid>
-                </Grid.Column>
-              </Grid>
+            <div className="feature-column">
+              <div className="feature-container">
+                <Grid className="feature-content">
+                  <Grid.Column width={5} verticalAlign="middle">
+                    <Image src={dca} style={{ verticalAlign: 'middle' }} />
+                  </Grid.Column>
+                  <Grid.Column width={11}>
+                    <Grid centered>
+                      <Grid.Row>
+                        <p className="feature-heading">DCA</p>
+                      </Grid.Row>
+                      <Grid.Row style={{ marginTop: '-5%' }}>
+                        <Grid.Column width={16}>
+                          <p className="feature-text">
+                            Enabling users to generate consistent profit by automating their trades
+                          </p>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                  </Grid.Column>
+                </Grid>
+              </div>
             </div>
-          </Grid.Column>
-          <Grid.Column width={5}>
-            <div className="feature-container">
-              <Grid>
-                <Grid.Column width={5} verticalAlign="middle">
-                  <Image src={perps} />
-                </Grid.Column>
-                <Grid.Column width={11} verticalAlign="middle">
-                  <Grid centered>
-                    <Grid.Row verticalAlign="middle">
-                      <p className="feature-heading">Perps</p>
-                    </Grid.Row>
-                    <Grid.Row style={{marginTop:'-7%'}}>
-                      <p className="feature-text">
-                        Experience a LP to trader perpetual exchange by utilizing LP pool liquidity and oracles
-                      </p>
-                    </Grid.Row>
-                  </Grid>
-                </Grid.Column>
-              </Grid>
+            <div className="feature-column">
+              <div className="feature-container">
+                <Grid className="feature-content">
+                  <Grid.Column width={5} verticalAlign="middle">
+                    <Image src={perps} style={{ verticalAlign: 'middle' }} />
+                  </Grid.Column>
+                  <Grid.Column width={11}>
+                    <Grid centered>
+                      <Grid.Row>
+                        <p className="feature-heading">Perps</p>
+                      </Grid.Row>
+                      <Grid.Row style={{ marginTop: '-5%' }}>
+                        <Grid.Column width={16}>
+                          <p className="feature-text">
+                            Experience a LP to trader perpetual exchange by utilizing LP pool liquidity and oracles
+                          </p>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                  </Grid.Column>
+                </Grid>
+              </div>
             </div>
-          </Grid.Column>
+          </div>
         </Grid.Row>
-        <Grid.Row only="mobile" style={{ marginLeft: '12%', marginRight: '12%' }}>
+
+        <Grid.Row only="mobile" style={{ marginLeft: '14%', marginRight: '14%' }}>
           <Grid>
             <Grid.Row>
               <div className="feature-container">
                 <Grid>
                   <Grid.Row centered>
-                    <Image src={atomic_swap} />
+                    <Image src={atomic_swap} style={{ verticalAlign: 'middle' }} />
                   </Grid.Row>
-                  <Grid.Row centered style={{marginTop:'-7%'}}>
+                  <Grid.Row centered>
                     <p className="feature-heading">Atomic Swap</p>
                   </Grid.Row>
-                  <Grid.Row style={{marginTop:'-7%'}}>
-                    <p className="feature-text">
-                      Move assets between chains without any trusted intermediaries
-                    </p>
+                  <Grid.Row centered>
+                    <Grid.Column width={14}>
+                      <p className="feature-text">
+                        Move assets between chains without any trusted intermediaries
+                      </p>
+                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </div>
@@ -98,15 +109,17 @@ function LandingFeatures() {
               <div className="feature-container">
                 <Grid>
                   <Grid.Row centered>
-                    <Image src={dca} />
+                    <Image src={dca} style={{ verticalAlign: 'middle' }} />
                   </Grid.Row>
-                  <Grid.Row centered style={{marginTop:'-7%'}}>
+                  <Grid.Row centered>
                     <p className="feature-heading">DCA</p>
                   </Grid.Row>
-                  <Grid.Row style={{marginTop:'-7%'}}>
-                    <p className="feature-text">
-                      Enabling users to generate consistent profit by automating their trades
-                    </p>
+                  <Grid.Row centered>
+                    <Grid.Column width={14}>
+                      <p className="feature-text">
+                        Enabling users to generate consistent profit by automating their trades
+                      </p>
+                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </div>
@@ -115,15 +128,17 @@ function LandingFeatures() {
               <div className="feature-container">
                 <Grid>
                   <Grid.Row centered>
-                    <Image src={perps} />
+                    <Image src={perps} style={{ verticalAlign: 'middle' }} />
                   </Grid.Row>
-                  <Grid.Row centered style={{marginTop:'-7%'}}>
+                  <Grid.Row centered>
                     <p className="feature-heading">Perps</p>
                   </Grid.Row>
-                  <Grid.Row style={{marginTop:'-7%'}}>
-                    <p className="feature-text">
-                      Experience a LP to trader perpetual exchange by utilizing LP pool liquidity and oracles
-                    </p>
+                  <Grid.Row centered>
+                    <Grid.Column width={14}>
+                      <p className="feature-text">
+                        Experience a LP to trader perpetual exchange by utilizing LP pool liquidity and oracles
+                      </p>
+                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </div>
