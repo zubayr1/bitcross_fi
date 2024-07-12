@@ -50,24 +50,26 @@ function LandingPage() {
           <Grid centered>
             <Grid.Row centered>
               <Grid.Column width={12} only='mobile'>
-                <Grid centered>
-                  <Grid.Column width={3}>
-                      <Image src={telegram} size='mini' />
-                  </Grid.Column>
+                <Grid centered columns={3}>
+                  <Grid.Row centered>
+                    <Grid.Column width={3}>
+                        <Image src={telegram} size='mini' />
+                    </Grid.Column>
 
-                  <Grid.Column width={3}>
-                      <Image src={twitter} size='mini' />
-                  </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Image src={twitter} size='mini' />
+                    </Grid.Column>
 
-                  <Grid.Column width={3}>
-                      <Image src={medium} size='mini' />
-                  </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Image src={medium} size='mini' />
+                    </Grid.Column>
+                  </Grid.Row>
                 </Grid>
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row style={{marginBottom:'2%'}}>
-              <Grid.Column width={14} textAlign='right' only='mobile'>
+              <Grid.Column width={14} textAlign='right' only='mobile tablet'>
                 <Button onClick={()=> handleButtonClick()} style={{width:'100%', backgroundColor: '#584C22', color: 'white'}}>
                   <>
                     Launch App

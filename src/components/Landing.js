@@ -37,9 +37,7 @@ function Landing() {
                 <Grid>
                     <Grid.Row>
                         <Grid centered>
-                            <Grid.Row centered>
-                                <Image src={rectangle}/>
-                            </Grid.Row>
+
 
                             <Grid.Row>
                                 <p className='heading'>ATOMIC EXECUTION WITH ZK SECURITY</p>
@@ -50,8 +48,13 @@ function Landing() {
                             </Grid.Row>
 
                             <Grid.Row centered>
+                                <Image src={rectangle} size='medium'/>
+                            </Grid.Row>
+
+                            <Grid.Row centered>
                                 <LandingFeatures />
                             </Grid.Row>
+
                         </Grid>
                     </Grid.Row>
                 </Grid>
@@ -61,10 +64,6 @@ function Landing() {
                 <Grid>
                     <Grid.Row>
                         <Grid centered>
-                            <Grid.Row centered>
-                                <Image src={rectangle} size='medium'/>
-                            </Grid.Row>
-
                             <Grid.Row>
                                 <p className='heading'>ATOMIC EXECUTION WITH ZK SECURITY</p>
                             </Grid.Row>
