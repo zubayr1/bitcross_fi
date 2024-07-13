@@ -4,23 +4,23 @@
   color: white;
   margin: 0;
   text-align: center;
-  font-size: 15px;
-  margin-bottom: 2px;
+  font-size: 1.3rem;
+  margin-bottom: 2%;
 }
 
 /* For tablet */
 @media only screen and (min-width: 768px) {
   .feature-heading {
-    font-size: 16.8px;
-    margin-bottom: 2px;
+    font-size: 1.4rem;
+    margin-bottom: 2%;
   }
 }
 
 /* For computer */
 @media only screen and (min-width: 992px) {
   .feature-heading {
-    font-size: 18.4px;
-    margin-bottom: 2px;
+    font-size: 1.5rem;
+    margin-bottom: 2%;
   }
 }
 
@@ -34,20 +34,20 @@
 }
 
 .feature-text {
-  font-size: 13px;
+  font-size: 1rem;
   margin-top: 0;
 }
 
 @media only screen and (min-width: 768px) {
   .feature-text {
-    font-size: 14.7px;
+    font-size: 1.1rem;
     margin-top: 0;
   }
 }
 
 @media only screen and (min-width: 992px) {
   .feature-text {
-    font-size: 15.7px;
+    font-size: 1.1rem;
     margin-top: 0;
   }
 }

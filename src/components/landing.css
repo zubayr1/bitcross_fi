@@ -9,21 +9,21 @@
 
 /* Default for mobile */
 .heading {
-  font-size: 60px;
+  font-size: 4rem;
   text-align: center;
 }
 
 /* For tablet */
 @media only screen and (min-width: 768px) {
   .heading {
-    font-size: 64px;
+    font-size: 6rem;
   }
 }
 
 /* For computer */
 @media only screen and (min-width: 992px) {
   .heading {
-    font-size: 82px;
+    font-size: 7rem;
     text-align: left;
   }
 }
@@ -39,20 +39,20 @@
 
 /* Default for mobile */
 .subheading {
-  font-size: 18px;
+  font-size: 1.5rem;
 }
 
 /* For tablet */
 @media only screen and (min-width: 768px) {
   .subheading {
-    font-size: 18px;
+    font-size: 2.0rem;
   }
 }
 
 /* For computer */
 @media only screen and (min-width: 992px) {
   .subheading {
-    font-size: 17.6px;
+    font-size: 2.0rem;
     text-align: left;
   }
 }
