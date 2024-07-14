@@ -53,15 +53,15 @@ function LandingPage() {
                 <Grid centered columns={3}>
                   <Grid.Row centered>
                     <Grid.Column width={3}>
-                        <Image src={telegram} size='mini' />
+                        <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
                     </Grid.Column>
 
                     <Grid.Column width={3}>
-                        <Image src={twitter} size='mini' />
+                        <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
                     </Grid.Column>
 
                     <Grid.Column width={3}>
-                        <Image src={medium} size='mini' />
+                        <Image src={medium} size='mini' style={{cursor: 'pointer'}}/>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

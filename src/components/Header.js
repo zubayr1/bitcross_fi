@@ -42,15 +42,15 @@ function Header() {
                 <Grid.Column width={3}>
                     <Grid>
                         <Grid.Column width={3}>
-                            <Image src={telegram} size='mini' />
+                            <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
                         </Grid.Column>
 
                         <Grid.Column width={3}>
-                            <Image src={twitter} size='mini' />
+                            <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
                         </Grid.Column>
 
                         <Grid.Column width={3}>
-                            <Image src={medium} size='mini' />
+                            <Image src={medium} size='mini' style={{cursor: 'pointer'}}/>
                         </Grid.Column>
                     </Grid>
                 </Grid.Column>
@@ -78,15 +78,15 @@ function Header() {
                 <Grid.Column width={7} floated='right'>
                     <Grid>
                         <Grid.Column width={3}>
-                            <Image src={telegram} size='mini' />
+                            <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
                         </Grid.Column>
 
                         <Grid.Column width={3}>
-                            <Image src={twitter} size='mini' />
+                            <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
                         </Grid.Column>
 
                         <Grid.Column width={3}>
-                            <Image src={medium} size='mini' />
+                            <Image src={medium} size='mini' style={{cursor: 'pointer'}}/>
                         </Grid.Column>
                     </Grid>
                 </Grid.Column>
