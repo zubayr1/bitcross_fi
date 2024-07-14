@@ -15,19 +15,17 @@ function LandingFeatures() {
             <div className="feature-column">
               <div className="feature-container">
                 <Grid className="feature-content">
-                  <Grid.Column width={5} verticalAlign="middle">
+                  <Grid.Column width={4} verticalAlign="middle">
                     <Image
                       src={atomic_swap}
                       style={{ verticalAlign: "middle" }}
                     />
                   </Grid.Column>
-                  <Grid.Column width={11}>
+                  <Grid.Column width={12}>
                     <Grid centered>
                       <Grid.Row>
-                        <p className="feature-heading">Atomic Swap</p>
-                      </Grid.Row>
-                      <Grid.Row style={{ marginTop: "-5%" }}>
-                        <Grid.Column width={16}>
+                        <Grid.Column>
+                          <p className="feature-heading">Atomic Swap</p>
                           <p className="feature-text">
                             Trustless asset transfer between chains
                           </p>
@@ -41,16 +39,14 @@ function LandingFeatures() {
             <div className="feature-column">
               <div className="feature-container">
                 <Grid className="feature-content">
-                  <Grid.Column width={5} verticalAlign="middle">
+                  <Grid.Column width={4} verticalAlign="middle">
                     <Image src={dca} style={{ verticalAlign: "middle" }} />
                   </Grid.Column>
-                  <Grid.Column width={11}>
+                  <Grid.Column width={12}>
                     <Grid centered>
                       <Grid.Row>
-                        <p className="feature-heading">DCA</p>
-                      </Grid.Row>
-                      <Grid.Row style={{ marginTop: "-5%" }}>
-                        <Grid.Column width={16}>
+                        <Grid.Column>
+                          <p className="feature-heading">DCA</p>
                           <p className="feature-text">
                             Automated trades for consistent profit
                           </p>
@@ -64,16 +60,14 @@ function LandingFeatures() {
             <div className="feature-column">
               <div className="feature-container">
                 <Grid className="feature-content">
-                  <Grid.Column width={5} verticalAlign="middle">
+                  <Grid.Column width={4} verticalAlign="middle">
                     <Image src={perps} style={{ verticalAlign: "middle" }} />
                   </Grid.Column>
-                  <Grid.Column width={11}>
+                  <Grid.Column width={12}>
                     <Grid centered>
                       <Grid.Row>
-                        <p className="feature-heading">Perps</p>
-                      </Grid.Row>
-                      <Grid.Row style={{ marginTop: "-5%" }}>
-                        <Grid.Column width={16}>
+                        <Grid.Column>
+                          <p className="feature-heading">Perps</p>
                           <p className="feature-text">
                             Experience LP-to-trader exchange
                           </p>

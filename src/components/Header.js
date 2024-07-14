@@ -36,7 +36,7 @@ function Header() {
         <Grid verticalAlign='middle' columns={3} centered>
             <Grid.Row only='computer'>
                 <Grid.Column width={3}>
-                    <Image src={logo} size='small' />
+                    <Image src={logo} size='small' style={{width:'40%', height:'auto'}}/>
                 </Grid.Column>
 
                 <Grid.Column width={3}>
