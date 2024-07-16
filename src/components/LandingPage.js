@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom'
 
 import { Grid, Image, Button } from 'semantic-ui-react'
 
-import telegram from '../assets/telegram_icon.svg';
+// import telegram from '../assets/telegram_icon.svg';
 import twitter from '../assets/twitter_icon.svg';
-import medium from '../assets/medium_icon.svg';
+import gitbook from '../assets/gitbook.svg';
+// import medium from '../assets/medium_icon.svg';
 import launch_icon from '../assets/launch_icon.svg';
 
 function LandingPage() {
@@ -38,6 +39,15 @@ function LandingPage() {
       navigate('/trade');
     }
 
+  const handleIconClick = (link)=> {
+    if(link==='x')
+    {
+        window.location.href = 'https://x.com/bitcrossfi';
+    } else if(link === 'gitbook') {
+        window.location.href = 'https://bitcross-organization.gitbook.io/bitcross';
+    }
+  }
+
   return (
     <div style={{ backgroundColor: 'black', minHeight:'100vh', overflow:'hidden' }}>
       {loading ? (
@@ -52,17 +62,25 @@ function LandingPage() {
               <Grid.Column width={12} only='mobile'>
                 <Grid centered columns={3}>
                   <Grid.Row centered>
-                    <Grid.Column width={3}>
+                    {/* <Grid.Column width={3}>
                         <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
+                    </Grid.Column> */}
+
+                    <Grid.Column width={3}>
+                      <div onClick={()=> handleIconClick('x')}>
+                          <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
+                      </div>
                     </Grid.Column>
 
                     <Grid.Column width={3}>
-                        <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
+                      <div onClick={()=> handleIconClick('gitbook')}>
+                          <Image src={gitbook} size='mini' style={{ cursor: 'pointer', filter: 'invert(95%)' }}/>
+                      </div>
                     </Grid.Column>
 
-                    <Grid.Column width={3}>
+                    {/* <Grid.Column width={3}>
                         <Image src={medium} size='mini' style={{cursor: 'pointer'}}/>
-                    </Grid.Column>
+                    </Grid.Column> */}
                   </Grid.Row>
                 </Grid>
               </Grid.Column>
