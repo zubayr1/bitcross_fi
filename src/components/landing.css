@@ -3,23 +3,31 @@
   font-family: 'Railway', sans-serif;
   font-weight: 800; /* Extra bold */
   color: white;
+  color: transparent;
+  background: linear-gradient(90deg, #544a27, #a38312);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; 
   margin: 0;
   line-height: 1;
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  outline: none;
+  user-select: none;
 }
 
 /* Default for mobile */
 .heading {
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
+  padding: 1%;
 }
 
 /* For tablet */
 @media only screen and (min-width: 768px) {
   .heading {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 }
 
@@ -42,13 +50,14 @@
 
 /* Default for mobile */
 .subheading {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  padding: 2%;
 }
 
 /* For tablet */
 @media only screen and (min-width: 768px) {
   .subheading {
-    font-size: 2.0rem;
+    font-size: 1.6rem;
   }
 }
 

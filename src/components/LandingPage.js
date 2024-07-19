@@ -59,7 +59,7 @@ function LandingPage() {
           <Grid centered>
             <Grid.Row centered>
               <Grid.Column width={12} only='mobile'>
-                <Grid centered columns={3}>
+                <Grid centered columns={3} style={{marginTop:'5%'}}>
                   <Grid.Row centered>
                     {/* <Grid.Column width={3}>
                         <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
@@ -87,7 +87,13 @@ function LandingPage() {
 
             <Grid.Row style={{marginBottom:'2%'}}>
               <Grid.Column width={14} textAlign='right' only='mobile tablet'>
-                <Button onClick={()=> handleButtonClick()} style={{width:'100%', backgroundColor: '#584C22', color: 'white'}}>
+                <Button onClick={()=> handleButtonClick()} 
+                style={{ 
+                        width:'100%',
+                        backgroundColor: 'rgba(88, 76, 34, 0.3)', 
+                        color: 'white',
+                        border: '2px solid #584C22' 
+                    }}>
                   <>
                     Launch App
                     <Image src={launch_icon} avatar />
