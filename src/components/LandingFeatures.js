@@ -99,11 +99,9 @@ function LandingFeatures() {
                     <p className="feature-heading">Atomic Swap</p>
                   </Grid.Row>
                   <Grid.Row centered>
-                    <Grid.Column width={14}>
-                      <p className="feature-text">
-                        Trustless asset transfer between chains
-                      </p>
-                    </Grid.Column>
+                    <p className="feature-text">
+                      Trustless asset transfer between chains
+                    </p>
                   </Grid.Row>
                 </Grid>
               </div>
@@ -118,11 +116,9 @@ function LandingFeatures() {
                     <p className="feature-heading">DCA</p>
                   </Grid.Row>
                   <Grid.Row centered>
-                    <Grid.Column width={14}>
-                      <p className="feature-text">
-                        Automated trades for consistent profit
-                      </p>
-                    </Grid.Column>
+                    <p className="feature-text">
+                      Automated trades for consistent profit
+                    </p>
                   </Grid.Row>
                 </Grid>
               </div>
@@ -137,11 +133,9 @@ function LandingFeatures() {
                     <p className="feature-heading">Perps</p>
                   </Grid.Row>
                   <Grid.Row centered>
-                    <Grid.Column width={14}>
-                      <p className="feature-text">
-                        Experience LP-to-trader exchange
-                      </p>
-                    </Grid.Column>
+                    <p className="feature-text">
+                      Experience LP-to-trader exchange
+                    </p>
                   </Grid.Row>
                 </Grid>
               </div>
