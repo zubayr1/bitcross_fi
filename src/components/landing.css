@@ -5,6 +5,9 @@
   color: white;
   margin: 0;
   line-height: 1;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Default for mobile */

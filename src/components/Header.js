@@ -32,12 +32,11 @@ function Header() {
         setCurrentLocation(location.pathname);
       }, [location]);
 
-    const handleIconClick = (link)=> {
-        if(link==='x')
-        {
-            window.location.href = 'https://x.com/bitcrossfi';
-        } else if(link === 'gitbook') {
-            window.location.href = 'https://bitcross-organization.gitbook.io/bitcross';
+    const handleIconClick = (link) => {
+        if (link === 'x') {
+            window.open('https://x.com/bitcrossfi', '_blank');
+        } else if (link === 'gitbook') {
+            window.open('https://bitcross-organization.gitbook.io/bitcross', '_blank');
         }
     }
 
@@ -100,7 +99,15 @@ function Header() {
                         </Grid.Column> */}
 
                         <Grid.Column width={3}>
-                            <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
+                            <div onClick={()=> handleIconClick('x')}>
+                                <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
+                            </div>
+                        </Grid.Column>
+
+                        <Grid.Column width={3}>
+                            <div onClick={()=> handleIconClick('gitbook')}>
+                                <Image src={gitbook} size='mini' style={{ cursor: 'pointer', filter: 'invert(95%)' }}/>
+                            </div>
                         </Grid.Column>
 
                         {/* <Grid.Column width={3}>

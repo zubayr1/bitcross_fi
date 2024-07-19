@@ -39,13 +39,12 @@ function LandingPage() {
       navigate('/trade');
     }
 
-  const handleIconClick = (link)=> {
-    if(link==='x')
-    {
-        window.location.href = 'https://x.com/bitcrossfi';
-    } else if(link === 'gitbook') {
-        window.location.href = 'https://bitcross-organization.gitbook.io/bitcross';
-    }
+  const handleIconClick = (link) => {
+      if (link === 'x') {
+          window.open('https://x.com/bitcrossfi', '_blank');
+      } else if (link === 'gitbook') {
+          window.open('https://bitcross-organization.gitbook.io/bitcross', '_blank');
+      }
   }
 
   return (
