@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
-import { Grid, Menu, Button, Icon, Dropdown, Image, Segment, Modal } from 'semantic-ui-react';
-import swap_order from '../assets/swap_order.svg';
-import limited_order from '../assets/limited_order.svg';
-import dca_order from '../assets/dca_order.svg';
-import metamask_logo from '../assets/metamask_logo.svg';
+import React, { useState, useEffect } from "react";
+import {
+  Grid,
+  Menu,
+  Button,
+  Icon,
+  Dropdown,
+  Image,
+  Modal,
+} from "semantic-ui-react";
+import metamask_logo from "../assets/metamask_logo.svg";
 
-import './trade.css';
-import Header from './Header';
+import "./trade.css";
+import Header from "./Header";
+import TradingMethods from "./TradingMethods";
+import TradingWorks from "./TradingWorks";
 
 function Trade() {
+  const [selectedType, setSelectedType] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+
+  useEffect(() => {
+    const storedValue = sessionStorage.getItem('isWalletConnected');
+    if (storedValue) {
+      setIsConnected(storedValue);
+    }
+}, []);
+
+  const handleSelectedTypeChange = (type) => {
+    setSelectedType(type);
+  };
 
   const handleConnectWallet = () => {
     setModalOpen(true);
@@ -19,12 +39,21 @@ function Trade() {
     setModalOpen(false);
   };
 
+  const handleWalletConnect = () => {
+    setModalOpen(false);
+    setIsConnected(true);
+    sessionStorage.setItem('isWalletConnected', true);
+  };
+
   return (
-    <div className="header-container" style={{ height: '100vh', backgroundColor: 'black', overflow: 'hidden' }}>
+    <div
+      className="header-container"
+      style={{ height: "100vh", backgroundColor: "black", overflow: "hidden" }}
+    >
       <Header />
-      <div className="new-header-container">
+      <div className="new-header-container" style={{ marginTop: "1%" }}>
         <Grid verticalAlign="middle">
-          <Grid.Row columns={3} only='computer'>
+          <Grid.Row columns={3} only="computer">
             {/* Left Column */}
             <Grid.Column></Grid.Column>
 
@@ -36,7 +65,10 @@ function Trade() {
                 </Menu.Item>
                 <Dropdown text="Preps" pointing className="link item menu-item">
                   <Dropdown.Menu className="custom-dropdown">
-                    <Dropdown.Item text="Coming Soon" className="custom-dropdown-item" />
+                    <Dropdown.Item
+                      text="Coming Soon"
+                      className="custom-dropdown-item"
+                    />
                   </Dropdown.Menu>
                 </Dropdown>
               </Menu>
@@ -49,12 +81,12 @@ function Trade() {
                 <Icon name="settings" />
               </Button>
               <Button className="custom-button" onClick={handleConnectWallet}>
-                Connect Wallet
+                {isConnected ? "Wallet Connected" : "Connect Wallet"}
               </Button>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row columns={3} only='tablet mobile'>
+          <Grid.Row columns={3} only="tablet mobile">
             {/* Left Column */}
             <Grid.Column></Grid.Column>
 
@@ -66,7 +98,10 @@ function Trade() {
                 </Menu.Item>
                 <Dropdown text="Preps" pointing className="link item menu-item">
                   <Dropdown.Menu className="custom-dropdown">
-                    <Dropdown.Item text="Coming Soon" className="custom-dropdown-item" />
+                    <Dropdown.Item
+                      text="Coming Soon"
+                      className="custom-dropdown-item"
+                    />
                   </Dropdown.Menu>
                 </Dropdown>
               </Menu>
@@ -74,19 +109,24 @@ function Trade() {
 
             {/* Right Side Buttons */}
             <Grid.Column textAlign="right">
-              <Dropdown item icon='bars' direction='left' simple style={{ paddingRight: '5%', color: 'white' }}>
+              <Dropdown
+                item
+                icon="bars"
+                direction="left"
+                simple
+                style={{ paddingRight: "5%", color: "white" }}
+              >
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => alert('Priority: Fast clicked')}>
-                    <Icon name='fire' />
+                  <Dropdown.Item>
+                    <Icon name="fire" />
                     Priority: Fast
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={() => alert('Settings clicked')}>
-                    <Icon name='settings' />
+                  <Dropdown.Item>
+                    <Icon name="settings" />
                     Settings
                   </Dropdown.Item>
                   <Dropdown.Item onClick={handleConnectWallet}>
-                    <Icon name='wallet' />
-                    Connect Wallet
+                    {isConnected ? "Wallet Connected" : "Connect Wallet"}
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -94,68 +134,12 @@ function Trade() {
           </Grid.Row>
         </Grid>
       </div>
-      {/* New Header Section */}
+
       <div className="new-header-container">
-        <Grid verticalAlign="middle" centered>
-          <Grid.Row columns={3} centered>
-            {/* First Column */}
-            <Grid.Column width={3}>
-              <Grid verticalAlign="middle">
-                <Grid.Row columns={2} className="image-text-row">
-                  <Grid.Column width={4}>
-                    <Image src={swap_order} size="tiny" />
-                  </Grid.Column>
-                  <Grid.Column width={10}>
-                    <div className="new-header-text">
-                      <div>Swap</div>
-                      <div>The best price</div>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Grid.Column>
-
-            {/* Second Column (similar structure) */}
-            <Grid.Column width={3}>
-              <Grid verticalAlign="middle">
-                <Grid.Row columns={2} className="image-text-row">
-                  <Grid.Column width={4}>
-                    <Image src={limited_order} size="tiny" />
-                  </Grid.Column>
-                  <Grid.Column width={10}>
-                    <div className="new-header-text">
-                      <div>Limit Order</div>
-                      <div>Set your price</div>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Grid.Column>
-
-            {/* Third Column (similar structure) */}
-            <Grid.Column width={3}>
-              <Grid verticalAlign="middle">
-                <Grid.Row columns={2} className="image-text-row">
-                  <Grid.Column width={4}>
-                    <Image src={dca_order} size="tiny" />
-                  </Grid.Column>
-                  <Grid.Column width={10}>
-                    <div className="new-header-text">
-                      <div>DCA</div>
-                      <div>Set and forget</div>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-
-        <div className="coming-soon-container">
-          <Segment className="coming-soon-segment">
-            Coming Soon!
-          </Segment>
-        </div>
+        <TradingMethods onTypeChange={handleSelectedTypeChange} />
+      </div>
+      <div>
+        <TradingWorks selectedType={selectedType} isConnected={isConnected}/>
       </div>
 
       {/* Modal for Connect Wallet */}
@@ -163,25 +147,62 @@ function Trade() {
         open={modalOpen}
         onClose={handleCloseModal}
         size="small"
-        style={{ borderRadius: '10px', backgroundColor: '#7d754a', color: 'white' }}
+        style={{
+          borderRadius: "10px",
+          backgroundColor: "#7d754a",
+          color: "white",
+        }}
       >
-        <Modal.Header style={{ fontSize: '1.5rem', textAlign: 'center', color: 'white', backgroundColor: '#7d754a' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Modal.Header
+          style={{
+            fontSize: "1.5rem",
+            textAlign: "center",
+            color: "white",
+            backgroundColor: "#7d754a",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <span>Connect Wallet</span>
-            <Icon name='close' style={{ cursor: 'pointer' }} onClick={handleCloseModal} />
+            <Icon
+              name="close"
+              style={{ cursor: "pointer" }}
+              onClick={handleCloseModal}
+            />
           </div>
         </Modal.Header>
 
-        <Modal.Content style={{ backgroundColor: '#7d754a' }}>
-          <Modal.Description style={{ color: 'white', textAlign: 'left' }}>
-            <p style={{ fontSize: '1rem' }}>Recommended wallets</p>
-            <div style={{ display: 'flex', alignItems: 'center', marginTop: '1rem', padding: '10px', border: '1px solid white', borderRadius: '5px' }}>
-              <Image src={metamask_logo} size="tiny" style={{ marginRight: '0.5rem', width: '50px' }} />
-              <span style={{ color: 'white', marginLeft: '0.5rem' }}>Metamask</span>
+        <Modal.Content style={{ backgroundColor: "#7d754a" }}>
+          <Modal.Description style={{ color: "white", textAlign: "left" }}>
+            <p style={{ fontSize: "1rem" }}>Recommended wallets</p>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "1rem",
+                padding: "10px",
+                border: "1px solid white",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+              onClick={handleWalletConnect}
+            >
+              <Image
+                src={metamask_logo}
+                size="tiny"
+                style={{ marginRight: "0.5rem", width: "50px" }}
+              />
+              <span style={{ color: "white", marginLeft: "0.5rem" }}>
+                Metamask
+              </span>
             </div>
           </Modal.Description>
         </Modal.Content>
-
       </Modal>
     </div>
   );
