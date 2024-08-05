@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import xLogoGif from '../assets/x_logo.gif'; // Ensure the path is correct
 
-function Loading({ onGifEnd }) {
+function Loading({ onGifEnd = null }) {
   useEffect(() => {
     // Set a timeout equal to the duration of the GIF to simulate the end of the GIF
     const timeout = setTimeout(() => {

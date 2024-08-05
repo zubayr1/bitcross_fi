@@ -9,6 +9,7 @@ import {
   Modal,
 } from "semantic-ui-react";
 import metamask_logo from "../assets/metamask_logo.svg";
+import { ethers } from "ethers";
 
 import "./trade.css";
 import Header from "./Header";
@@ -18,31 +19,60 @@ import TradingWorks from "./TradingWorks";
 function Trade() {
   const [selectedType, setSelectedType] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
+  const [account, setAccount] = useState(null);
 
   useEffect(() => {
-    const storedValue = sessionStorage.getItem('isWalletConnected');
+    const storedValue = sessionStorage.getItem("account_address");
     if (storedValue) {
-      setIsConnected(storedValue);
+      setAccount(storedValue);
     }
-}, []);
+  }, []);
+
+  useEffect(() => {
+    if(window.ethereum) {
+      window.ethereum.on('chainChanged', () => {
+        handleWalletConnect();
+      })
+      window.ethereum.on('accountsChanged', () => {
+        handleWalletConnect();
+      })
+  }
+  }, []);
 
   const handleSelectedTypeChange = (type) => {
     setSelectedType(type);
   };
 
   const handleConnectWallet = () => {
-    setModalOpen(true);
+    if (account === null || account === -1 || account === -2)
+      setModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
   };
 
-  const handleWalletConnect = () => {
-    setModalOpen(false);
-    setIsConnected(true);
-    sessionStorage.setItem('isWalletConnected', true);
+  const handleWalletConnect = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+
+      try {
+        const accounts = await provider.send("eth_requestAccounts", []);
+
+        if (accounts.length > 0) {
+          const signer = await provider.getSigner();
+          setAccount(signer.address);
+          sessionStorage.setItem("account_address", signer.address);
+          setModalOpen(false);
+        }
+      } catch (error) {
+        setAccount(-1);
+        setModalOpen(false);
+      }
+    } else {
+      setAccount(-2);
+      setModalOpen(false);
+    }
   };
 
   return (
@@ -81,7 +111,7 @@ function Trade() {
                 <Icon name="settings" />
               </Button>
               <Button className="custom-button" onClick={handleConnectWallet}>
-                {isConnected ? "Wallet Connected" : "Connect Wallet"}
+                {account !== null ? "Wallet Connected" : "Connect Wallet"}
               </Button>
             </Grid.Column>
           </Grid.Row>
@@ -126,7 +156,7 @@ function Trade() {
                     Settings
                   </Dropdown.Item>
                   <Dropdown.Item onClick={handleConnectWallet}>
-                    {isConnected ? "Wallet Connected" : "Connect Wallet"}
+                    {account !== null ? "Wallet Connected" : "Connect Wallet"}
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -139,7 +169,7 @@ function Trade() {
         <TradingMethods onTypeChange={handleSelectedTypeChange} />
       </div>
       <div>
-        <TradingWorks selectedType={selectedType} isConnected={isConnected}/>
+        <TradingWorks selectedType={selectedType} account={account} />
       </div>
 
       {/* Modal for Connect Wallet */}

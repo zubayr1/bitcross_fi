@@ -4,7 +4,7 @@ import swap_order from "../assets/swap_order.svg";
 import limited_order from "../assets/limited_order.svg";
 import dca_order from "../assets/dca_order.svg";
 
-function TradingMethods({ onTypeChange }) {
+function TradingMethods({ onTypeChange = 0 }) {
   const [method, setMethod] = useState(0);
 
   const setSelectedType = (type) => {
@@ -105,7 +105,8 @@ function TradingMethods({ onTypeChange }) {
         </Grid.Row>
 
         <Grid.Row only="mobile" style={{ justifyContent: "center" }}>
-          <Grid.Column verticalAlign="middle"
+          <Grid.Column
+            verticalAlign="middle"
             width={5}
             style={{ display: "flex", justifyContent: "center" }}
           >
@@ -136,7 +137,11 @@ function TradingMethods({ onTypeChange }) {
 
           <Grid.Column
             width={5}
-            style={{ display: "flex", justifyContent: "center", paddingTop:'2px' }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "2px",
+            }}
           >
             <Grid centered>
               <Grid.Row width={5}>
