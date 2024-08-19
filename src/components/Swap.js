@@ -11,7 +11,7 @@ import bitcoin_logo from "../assets/bitcoin.svg";
 import solana_logo from "../assets/solana.svg";
 import flip from "../assets/flip.svg";
 
-function Swap({ account = null }) {
+function Swap({ account = null, onConnectWallet }) {
   const options = [
     {
       key: "btc",
@@ -47,10 +47,18 @@ function Swap({ account = null }) {
     });
   };
 
+  const handleConnectWallet = () => {
+    onConnectWallet(true);
+  };
+
   let layout = <div></div>;
 
   if (account === null) {
-    layout = <Message negative>Connect Wallet First</Message>;
+    layout = (
+      <div style={{ cursor: "pointer" }} onClick={handleConnectWallet}>
+        <Message negative>Connect Wallet First</Message>
+      </div>
+    );
   } else if (account === -1) {
     layout = <Message negative>Error connecting to MetaMask</Message>;
   } else if (account === -2) {
@@ -232,7 +240,7 @@ function Swap({ account = null }) {
   }
 
   return (
-    <div style={{paddingBottom:'2%'}}>
+    <div style={{ paddingBottom: "2%" }}>
       <Grid centered>
         <Grid.Row only="computer">
           <p

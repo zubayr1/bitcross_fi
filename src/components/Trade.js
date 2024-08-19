@@ -9,17 +9,24 @@ import {
   Modal,
 } from "semantic-ui-react";
 import metamask_logo from "../assets/metamask_logo.svg";
+import polkadot_logo from "../assets/polkadot_logo.svg";
 import { ethers } from "ethers";
+
+import { web3Enable, web3Accounts } from "@polkadot/extension-dapp";
+
 
 import "./trade.css";
 import Header from "./Header";
 import TradingMethods from "./TradingMethods";
 import TradingWorks from "./TradingWorks";
+import Interact from "./Interact";
+
 
 function Trade() {
   const [selectedType, setSelectedType] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [account, setAccount] = useState(null);
+
 
   useEffect(() => {
     const storedValue = sessionStorage.getItem("account_address");
@@ -29,21 +36,21 @@ function Trade() {
   }, []);
 
   useEffect(() => {
-    if(window.ethereum) {
-      window.ethereum.on('chainChanged', () => {
+    if (window.ethereum) {
+      window.ethereum.on("chainChanged", () => {
         handleWalletConnect();
-      })
-      window.ethereum.on('accountsChanged', () => {
+      });
+      window.ethereum.on("accountsChanged", () => {
         handleWalletConnect();
-      })
-  }
+      });
+    }
   }, []);
 
   const handleSelectedTypeChange = (type) => {
     setSelectedType(type);
   };
 
-  const handleConnectWallet = () => {
+  const handleOpenWalletModal = () => {
     if (account === null || account === -1 || account === -2)
       setModalOpen(true);
   };
@@ -52,28 +59,59 @@ function Trade() {
     setModalOpen(false);
   };
 
-  const handleWalletConnect = async () => {
-    if (window.ethereum) {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+  const handleWalletConnect = async (walletType) => {
+    if (walletType === "metamask") {
+      if (window.ethereum) {
+        const provider = new ethers.BrowserProvider(window.ethereum);
 
+        try {
+          const accounts = await provider.send("eth_requestAccounts", []);
+
+          if (accounts.length > 0) {
+            const signer = await provider.getSigner();
+            setAccount(signer.address);
+            sessionStorage.setItem("account_address", signer.address);
+            setModalOpen(false);
+          }
+        } catch (error) {
+          setAccount(-1);
+          setModalOpen(false);
+        }
+      } else {
+        setAccount(-2);
+        setModalOpen(false);
+      }
+    } else if (walletType === "polkadot") {
       try {
-        const accounts = await provider.send("eth_requestAccounts", []);
+        // Enable the Polkadot extension
+        const extensions = await web3Enable("BitCross.fi");
+        if (extensions.length === 0) {
+          setAccount(-1);
+          setModalOpen(false);
+        }
+
+        // Retrieve accounts from the Polkadot extension
+        const accounts = await web3Accounts();
 
         if (accounts.length > 0) {
-          const signer = await provider.getSigner();
-          setAccount(signer.address);
-          sessionStorage.setItem("account_address", signer.address);
+          // Use the first account
+          const account = accounts[0];
+          setAccount(account.address);
+          sessionStorage.setItem("account_address", account.address);
+          setModalOpen(false);
+
+
+        } else {
+          setAccount(-1);
           setModalOpen(false);
         }
       } catch (error) {
         setAccount(-1);
         setModalOpen(false);
       }
-    } else {
-      setAccount(-2);
-      setModalOpen(false);
     }
   };
+
 
   return (
     <div
@@ -110,7 +148,7 @@ function Trade() {
               <Button className="custom-button">
                 <Icon name="settings" />
               </Button>
-              <Button className="custom-button" onClick={handleConnectWallet}>
+              <Button className="custom-button" onClick={handleOpenWalletModal}>
                 {account !== null ? "Wallet Connected" : "Connect Wallet"}
               </Button>
             </Grid.Column>
@@ -155,7 +193,7 @@ function Trade() {
                     <Icon name="settings" />
                     Settings
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={handleConnectWallet}>
+                  <Dropdown.Item onClick={handleOpenWalletModal}>
                     {account !== null ? "Wallet Connected" : "Connect Wallet"}
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -169,9 +207,14 @@ function Trade() {
         <TradingMethods onTypeChange={handleSelectedTypeChange} />
       </div>
       <div>
-        <TradingWorks selectedType={selectedType} account={account} />
+        <TradingWorks
+          selectedType={selectedType}
+          account={account}
+          onConnectWallet={handleOpenWalletModal}
+        />
       </div>
 
+      <Interact account={account}/>
       {/* Modal for Connect Wallet */}
       <Modal
         open={modalOpen}
@@ -218,17 +261,40 @@ function Trade() {
                 padding: "10px",
                 border: "1px solid white",
                 borderRadius: "5px",
-                cursor: "pointer",
+                // cursor: "pointer",
               }}
-              onClick={handleWalletConnect}
+              // onClick={() => handleWalletConnect("metamask")}
             >
               <Image
                 src={metamask_logo}
                 size="tiny"
                 style={{ marginRight: "0.5rem", width: "50px" }}
+                disabled
               />
               <span style={{ color: "white", marginLeft: "0.5rem" }}>
                 Metamask
+              </span>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "1rem",
+                padding: "10px",
+                border: "1px solid white",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+              onClick={() => handleWalletConnect("polkadot")}
+            >
+              <Image
+                src={polkadot_logo}
+                size="tiny"
+                style={{ marginRight: "0.5rem", width: "50px" }}
+              />
+              <span style={{ color: "white", marginLeft: "0.5rem" }}>
+                Polkadot
               </span>
             </div>
           </Modal.Description>

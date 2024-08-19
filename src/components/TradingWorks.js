@@ -3,13 +3,13 @@ import Swap from "./Swap";
 import LimitOrder from "./LimitOrder";
 import DCA from "./DCA";
 
-function TradingWorks({ selectedType = 0, account = null }) {
+function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
   let layout = <div></div>;
 
   if (selectedType === 0) {
     layout = (
       <div>
-        <Swap account={account} />
+        <Swap account={account} onConnectWallet={onConnectWallet}/>
       </div>
     );
   } else if (selectedType === 1) {
