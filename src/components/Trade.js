@@ -10,23 +10,30 @@ import {
 } from "semantic-ui-react";
 import metamask_logo from "../assets/metamask_logo.svg";
 import polkadot_logo from "../assets/polkadot_logo.svg";
+import xverse_logo from "../assets/xverse.svg";
+
 import { ethers } from "ethers";
 
 import { web3Enable, web3Accounts } from "@polkadot/extension-dapp";
 
+import { AppConfig, UserSession, showConnect } from "@stacks/connect";
+import { StacksDevnet } from "@stacks/network";
 
 import "./trade.css";
 import Header from "./Header";
 import TradingMethods from "./TradingMethods";
 import TradingWorks from "./TradingWorks";
-import Interact from "./Interact";
-
 
 function Trade() {
   const [selectedType, setSelectedType] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [account, setAccount] = useState(null);
 
+  const appConfig = new AppConfig(["store_write", "publish_data"]);
+  const userSession = new UserSession({ appConfig });
+
+  // const localNetwork = new StacksTestnet();
+  // localNetwork.coreApiUrl = "http://localhost:3001";
 
   useEffect(() => {
     const storedValue = sessionStorage.getItem("account_address");
@@ -36,15 +43,37 @@ function Trade() {
   }, []);
 
   useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on("chainChanged", () => {
-        handleWalletConnect();
-      });
-      window.ethereum.on("accountsChanged", () => {
-        handleWalletConnect();
-      });
+    //
+  }, [account]);
+
+  useEffect(() => {
+    // Retrieve the blockstack session data from session storage
+    const sessionData = localStorage.getItem("blockstack-session");
+
+    if (sessionData) {
+      try {
+        const parsedData = JSON.parse(sessionData);
+        const identityAddress = parsedData?.userData?.identityAddress;
+
+        if (identityAddress) {
+          setAccount(identityAddress);
+        }
+      } catch (error) {
+        console.error("Error parsing session data:", error);
+      }
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     window.ethereum.on("chainChanged", () => {
+  //       handleWalletConnect();
+  //     });
+  //     window.ethereum.on("accountsChanged", () => {
+  //       handleWalletConnect();
+  //     });
+  //   }
+  // }, []);
 
   const handleSelectedTypeChange = (type) => {
     setSelectedType(type);
@@ -99,8 +128,6 @@ function Trade() {
           setAccount(account.address);
           sessionStorage.setItem("account_address", account.address);
           setModalOpen(false);
-
-
         } else {
           setAccount(-1);
           setModalOpen(false);
@@ -109,9 +136,35 @@ function Trade() {
         setAccount(-1);
         setModalOpen(false);
       }
+    } else if (walletType === "xverse") {
+      try {
+        if (!userSession.isUserSignedIn() && !userSession.isSignInPending()) {
+          showConnect({
+            appDetails: {
+              name: "BitCross.fi",
+              icon: window.location.origin + "/favicon.ico",
+            },
+            onFinish: () => {
+              let userData = userSession.loadUserData();
+              setAccount(userData.identityAddress);
+              sessionStorage.setItem(
+                "account_address",
+                userData.identityAddress
+              );
+
+              setModalOpen(false);
+            },
+            userSession,
+            network: new StacksDevnet(), // Use StacksMainnet or StacksTestnet depending on environment
+          });
+        } else {
+        }
+      } catch (error) {
+        setAccount(-1);
+        setModalOpen(false);
+      }
     }
   };
-
 
   return (
     <div
@@ -214,7 +267,6 @@ function Trade() {
         />
       </div>
 
-      <Interact account={account}/>
       {/* Modal for Connect Wallet */}
       <Modal
         open={modalOpen}
@@ -271,8 +323,31 @@ function Trade() {
                 style={{ marginRight: "0.5rem", width: "50px" }}
                 disabled
               />
-              <span style={{ color: "white", marginLeft: "0.5rem" }}>
+              <span style={{ color: "grey", marginLeft: "0.5rem" }}>
                 Metamask
+              </span>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "1rem",
+                padding: "10px",
+                border: "1px solid white",
+                borderRadius: "5px",
+                // cursor: "pointer",
+              }}
+              // onClick={() => handleWalletConnect("polkadot")}
+            >
+              <Image
+                src={polkadot_logo}
+                size="tiny"
+                style={{ marginRight: "0.5rem", width: "50px" }}
+                disabled
+              />
+              <span style={{ color: "grey", marginLeft: "0.5rem" }}>
+                Polkadot
               </span>
             </div>
 
@@ -286,15 +361,15 @@ function Trade() {
                 borderRadius: "5px",
                 cursor: "pointer",
               }}
-              onClick={() => handleWalletConnect("polkadot")}
+              onClick={() => handleWalletConnect("xverse")}
             >
               <Image
-                src={polkadot_logo}
+                src={xverse_logo}
                 size="tiny"
                 style={{ marginRight: "0.5rem", width: "50px" }}
               />
               <span style={{ color: "white", marginLeft: "0.5rem" }}>
-                Polkadot
+                Xverse
               </span>
             </div>
           </Modal.Description>
