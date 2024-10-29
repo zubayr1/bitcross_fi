@@ -197,10 +197,10 @@ function Trade() {
 
             {/* Right Side Buttons */}
             <Grid.Column textAlign="right">
-              <Button className="custom-button">Priority: Fast</Button>
+              {/* <Button className="custom-button">Priority: Fast</Button>
               <Button className="custom-button">
                 <Icon name="settings" />
-              </Button>
+              </Button> */}
               <Button className="custom-button" onClick={handleOpenWalletModal}>
                 {account !== null ? "Wallet Connected" : "Connect Wallet"}
               </Button>
@@ -238,14 +238,14 @@ function Trade() {
                 style={{ paddingRight: "5%", color: "white" }}
               >
                 <Dropdown.Menu>
-                  <Dropdown.Item>
+                  {/* <Dropdown.Item>
                     <Icon name="fire" />
                     Priority: Fast
                   </Dropdown.Item>
                   <Dropdown.Item>
                     <Icon name="settings" />
                     Settings
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
                   <Dropdown.Item onClick={handleOpenWalletModal}>
                     {account !== null ? "Wallet Connected" : "Connect Wallet"}
                   </Dropdown.Item>
