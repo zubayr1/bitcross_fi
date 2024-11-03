@@ -1,0 +1,110 @@
+.inputDiv {
+    width: 80%;
+}
+
+/* Media query for mobile devices (screens up to 768px wide) */
+@media (max-width: 768px) {
+    .inputDiv {
+        width: 60%;
+    }
+}
+
+.methodbutton {
+    width: 100%;
+    height: 20%;
+    /* Height for desktop */
+    background-color: #2b2d19;
+    color: #ede7df;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.1s;
+}
+
+/* Hover effect */
+.methodbutton:hover {
+    background-color: #3f3f30;
+}
+
+/* Inner glow effect */
+.methodbutton:hover::before {
+    content: '';
+    /* Required for pseudo-element */
+    position: absolute;
+    /* Position absolute to place it inside */
+    top: 0;
+    /* Aligns to the top */
+    left: 0;
+    /* Aligns to the left */
+    right: 0;
+    /* Aligns to the right */
+    bottom: 0;
+    /* Aligns to the bottom */
+    border: 2px solid #a6941f;
+    /* Inner border color */
+    box-shadow: inset 0 0 0px #2e2908;
+    /* Glow effect */
+    pointer-events: none;
+    /* Prevents blocking clicks */
+}
+
+
+/* Media query for tablets (up to 1024px) */
+@media (max-width: 1024px) {
+    .methodbutton {
+        height: 15%;
+        font-size: 1.4rem;
+    }
+}
+
+/* Media query for mobile devices (up to 768px) */
+@media (max-width: 768px) {
+    .methodbutton {
+        height: 12%;
+        font-size: 1.2rem;
+    }
+}
+
+.limitorderDiv {
+    font-size: 1.2rem;
+}
+
+/* Media query for mobile devices (screens up to 768px wide) */
+@media (max-width: 768px) {
+    .limitorderDiv {
+        font-size: .9rem;
+    }
+}
+
+.rate-text {
+    display: inline;
+    /* Default display */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .rate-text::after {
+        content: "rate";
+        /* Content for mobile */
+    }
+
+    .rate-text::before {
+        content: "";
+        /* Clear any previous content */
+    }
+}
+
+/* For larger screens, keep the original text */
+@media (min-width: 769px) {
+    .rate-text::after {
+        content: "market rate";
+        /* Content for larger screens */
+    }
+
+    .rate-text::before {
+        content: "";
+        /* Clear any previous content */
+    }
+}

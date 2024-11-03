@@ -32,13 +32,15 @@ function Trade() {
   const appConfig = new AppConfig(["store_write", "publish_data"]);
   const userSession = new UserSession({ appConfig });
 
-  // const localNetwork = new StacksTestnet();
-  // localNetwork.coreApiUrl = "http://localhost:3001";
-
   useEffect(() => {
     const storedValue = sessionStorage.getItem("account_address");
     if (storedValue) {
       setAccount(storedValue);
+    }
+
+    const selectedType = sessionStorage.getItem("selectedType");
+    if (selectedType) {
+      setSelectedType(parseInt(selectedType));
     }
   }, []);
 
@@ -77,6 +79,7 @@ function Trade() {
 
   const handleSelectedTypeChange = (type) => {
     setSelectedType(type);
+    sessionStorage.setItem("selectedType", type);
   };
 
   const handleOpenWalletModal = () => {
@@ -133,7 +136,7 @@ function Trade() {
           setModalOpen(false);
         }
       } catch (error) {
-        setAccount(-1);
+        setAccount(-2);
         setModalOpen(false);
       }
     } else if (walletType === "xverse") {
@@ -158,9 +161,11 @@ function Trade() {
             network: new StacksDevnet(), // Use StacksMainnet or StacksTestnet depending on environment
           });
         } else {
+          setAccount(-1);
+          setModalOpen(false);
         }
       } catch (error) {
-        setAccount(-1);
+        setAccount(-2);
         setModalOpen(false);
       }
     }
@@ -169,76 +174,88 @@ function Trade() {
   return (
     <div
       className="header-container"
-      style={{ height: "100vh", backgroundColor: "black", overflow: "hidden" }}
+      style={{ height: "100vh", backgroundColor: "black", overflowX: "hidden" }}
     >
       <Header />
       <div className="new-header-container" style={{ marginTop: "1%" }}>
-        <Grid verticalAlign="middle">
-          <Grid.Row columns={3} only="computer">
-            {/* Left Column */}
-            <Grid.Column></Grid.Column>
+        <div style={{ marginRight: "4%" }}>
+          <Grid verticalAlign="middle">
+            <Grid.Row columns={3} only="computer">
+              {/* Left Column */}
+              <Grid.Column></Grid.Column>
 
-            {/* Middle Menu Items */}
-            <Grid.Column textAlign="center">
-              <Menu secondary className="center-menu">
-                <Menu.Item name="trade" className="menu-item">
-                  Trade
-                </Menu.Item>
-                <Dropdown text="Preps" pointing className="link item menu-item">
-                  <Dropdown.Menu className="custom-dropdown">
-                    <Dropdown.Item
-                      text="Coming Soon"
-                      className="custom-dropdown-item"
-                    />
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Menu>
-            </Grid.Column>
+              {/* Middle Menu Items */}
+              <Grid.Column textAlign="center">
+                <Menu secondary className="center-menu">
+                  <Menu.Item name="trade" className="menu-item-selected">
+                    Trade
+                  </Menu.Item>
+                  <Dropdown
+                    text="Perps"
+                    pointing
+                    className="link item menu-item"
+                  >
+                    <Dropdown.Menu className="custom-dropdown">
+                      <Dropdown.Item
+                        text="Coming Soon"
+                        className="custom-dropdown-item"
+                      />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Menu>
+              </Grid.Column>
 
-            {/* Right Side Buttons */}
-            <Grid.Column textAlign="right">
-              {/* <Button className="custom-button">Priority: Fast</Button>
+              {/* Right Side Buttons */}
+              <Grid.Column textAlign="right">
+                {/* <Button className="custom-button">Priority: Fast</Button>
               <Button className="custom-button">
                 <Icon name="settings" />
               </Button> */}
-              <Button className="custom-button" onClick={handleOpenWalletModal}>
-                {account !== null ? "Wallet Connected" : "Connect Wallet"}
-              </Button>
-            </Grid.Column>
-          </Grid.Row>
+                <Button
+                  className="custom-button"
+                  onClick={handleOpenWalletModal}
+                >
+                  {account !== null ? "Wallet Connected" : "Connect Wallet"}
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
 
-          <Grid.Row columns={3} only="tablet mobile">
-            {/* Left Column */}
-            <Grid.Column></Grid.Column>
+            <Grid.Row columns={3} only="tablet mobile">
+              {/* Left Column */}
+              <Grid.Column></Grid.Column>
 
-            {/* Middle Menu Items */}
-            <Grid.Column textAlign="center">
-              <Menu secondary className="center-menu">
-                <Menu.Item name="trade" className="menu-item">
-                  Trade
-                </Menu.Item>
-                <Dropdown text="Preps" pointing className="link item menu-item">
-                  <Dropdown.Menu className="custom-dropdown">
-                    <Dropdown.Item
-                      text="Coming Soon"
-                      className="custom-dropdown-item"
-                    />
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Menu>
-            </Grid.Column>
+              {/* Middle Menu Items */}
+              <Grid.Column textAlign="center">
+                <Menu secondary className="center-menu">
+                  <Menu.Item name="trade" className="menu-item-selected">
+                    Trade
+                  </Menu.Item>
+                  <Dropdown
+                    text="Perps"
+                    pointing
+                    className="link item menu-item"
+                  >
+                    <Dropdown.Menu className="custom-dropdown">
+                      <Dropdown.Item
+                        text="Coming Soon"
+                        className="custom-dropdown-item"
+                      />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Menu>
+              </Grid.Column>
 
-            {/* Right Side Buttons */}
-            <Grid.Column textAlign="right">
-              <Dropdown
-                item
-                icon="bars"
-                direction="left"
-                simple
-                style={{ paddingRight: "5%", color: "white" }}
-              >
-                <Dropdown.Menu>
-                  {/* <Dropdown.Item>
+              {/* Right Side Buttons */}
+              <Grid.Column textAlign="right">
+                <Dropdown
+                  item
+                  icon="bars"
+                  direction="left"
+                  simple
+                  style={{ paddingRight: "5%", color: "white" }}
+                >
+                  <Dropdown.Menu>
+                    {/* <Dropdown.Item>
                     <Icon name="fire" />
                     Priority: Fast
                   </Dropdown.Item>
@@ -246,14 +263,15 @@ function Trade() {
                     <Icon name="settings" />
                     Settings
                   </Dropdown.Item> */}
-                  <Dropdown.Item onClick={handleOpenWalletModal}>
-                    {account !== null ? "Wallet Connected" : "Connect Wallet"}
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+                    <Dropdown.Item onClick={handleOpenWalletModal}>
+                      {account !== null ? "Wallet Connected" : "Connect Wallet"}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </div>
       </div>
 
       <div className="new-header-container">

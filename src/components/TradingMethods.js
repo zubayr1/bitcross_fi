@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Image } from "semantic-ui-react";
 import swap_order from "../assets/swap_order.svg";
 import limited_order from "../assets/limited_order.svg";
 import dca_order from "../assets/dca_order.svg";
 
+import "./trade.css";
+
 function TradingMethods({ onTypeChange = 0 }) {
   const [method, setMethod] = useState(0);
 
+  useEffect(() => {
+    const selectedType = sessionStorage.getItem("selectedType");
+    if (selectedType) {
+      setMethod(parseInt(selectedType));
+    }
+  }, []);
+
   const setSelectedType = (type) => {
     setMethod(type);
-    onTypeChange(type); // Call the parent callback function
+    onTypeChange(type);
   };
 
   return (
@@ -26,7 +35,13 @@ function TradingMethods({ onTypeChange = 0 }) {
             width={5}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid>
+            <Grid
+              className="methodsDiv"
+              style={{
+                borderBottom: method === 0 ? "2px solid #625611" : "none",
+                backgroundColor: method === 0 ? "#2e2908" : "",
+              }}
+            >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
@@ -36,6 +51,7 @@ function TradingMethods({ onTypeChange = 0 }) {
                     borderRadius: "5px",
                   }}
                   onClick={() => setSelectedType(0)}
+                  onhov
                 >
                   <Image src={swap_order} size="small" />
                 </div>
@@ -53,7 +69,13 @@ function TradingMethods({ onTypeChange = 0 }) {
             width={5}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid>
+            <Grid
+              className="methodsDiv"
+              style={{
+                borderBottom: method === 1 ? "2px solid #625611" : "none",
+                backgroundColor: method === 1 ? "#2e2908" : "",
+              }}
+            >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
@@ -80,7 +102,13 @@ function TradingMethods({ onTypeChange = 0 }) {
             width={5}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid>
+            <Grid
+              className="methodsDiv"
+              style={{
+                borderBottom: method === 2 ? "2px solid #625611" : "none",
+                backgroundColor: method === 2 ? "#2e2908" : "",
+              }}
+            >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
@@ -110,7 +138,15 @@ function TradingMethods({ onTypeChange = 0 }) {
             width={5}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid centered>
+            <Grid
+              className="methodsDiv"
+              centered
+              style={{
+                borderBottom: method === 0 ? "2px solid #625611" : "none",
+                backgroundColor: method === 0 ? "#2e2908" : "",
+                width: "100%",
+              }}
+            >
               <Grid.Row>
                 <div
                   style={{
@@ -143,7 +179,15 @@ function TradingMethods({ onTypeChange = 0 }) {
               paddingTop: "2px",
             }}
           >
-            <Grid centered>
+            <Grid
+              className="methodsDiv"
+              centered
+              style={{
+                borderBottom: method === 1 ? "2px solid #625611" : "none",
+                backgroundColor: method === 1 ? "#2e2908" : "",
+                width: "100%",
+              }}
+            >
               <Grid.Row width={5}>
                 <div
                   style={{
@@ -169,7 +213,15 @@ function TradingMethods({ onTypeChange = 0 }) {
             width={5}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid centered>
+            <Grid
+              className="methodsDiv"
+              centered
+              style={{
+                borderBottom: method === 2 ? "2px solid #625611" : "none",
+                backgroundColor: method === 2 ? "#2e2908" : "",
+                width: "100%",
+              }}
+            >
               <Grid.Row width={5}>
                 <div
                   style={{
