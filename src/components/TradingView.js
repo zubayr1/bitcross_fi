@@ -42,10 +42,10 @@ function TradingView({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return; // Ensure canvas is not null
+    if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return; // Ensure context is available
+    if (!ctx) return;
 
     const ratioDataset = outputTokenHistory.map(
       (value, index) => value / inputTokenHistory[index]
@@ -299,12 +299,19 @@ function TradingView({
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         style={{
-          width: "80%",
-          height: "80%",
+          width: "90%",
+          height: "90%",
           background: "black",
         }}
       >
-        <Modal.Content>
+        <Modal.Content
+          style={{
+            background: "linear-gradient(to bottom, black, darkblue)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <canvas ref={modalCanvasRef} />
         </Modal.Content>
         <Modal.Actions>
