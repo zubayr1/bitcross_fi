@@ -1,13 +1,29 @@
-.inputDiv {
-    width: 80%;
+.inputContent {
+    width: 60%;
 }
 
 /* Media query for mobile devices (screens up to 768px wide) */
 @media (max-width: 768px) {
-    .inputDiv {
-        width: 60%;
+    .inputContent {
+        width: 40%;
     }
 }
+
+
+.inputDiv {
+
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+
+
+
+.borderHighlight {
+    box-shadow: 0 0 4px 2px #a6bdbe !important;
+}
+
+
 
 .methodbutton {
     width: 100%;

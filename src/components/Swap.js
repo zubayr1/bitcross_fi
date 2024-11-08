@@ -1,17 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Grid, Message, Dropdown, Input, Image } from "semantic-ui-react";
+import React, { useState, useEffect, useRef } from "react";
+
+import { useModal } from "./ModalContext";
+
+import axios from "axios";
+
+import {
+  Grid,
+  Message,
+  Dropdown,
+  Input,
+  Image,
+  Button,
+} from "semantic-ui-react";
 import bitcoin_logo from "../assets/bitcoin.svg";
 import solana_logo from "../assets/solana.svg";
 import flip from "../assets/flip.svg";
-import axios from "axios";
+
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 
 import "./methods.css";
+import "./buttonstyle.css";
 
-function Swap({ account = null, onConnectWallet, tokenOptions }) {
+function Swap({ account = null, tokenOptions }) {
   Chart.register(CategoryScale);
+
+  const { openModal } = useModal();
+
+  const containerRef = useRef(null);
+
+  const [highlightedDivId, setHighlightedDivId] = useState(null);
 
   const [selectedValueSend, setSelectedValueSend] = useState(
     tokenOptions[0].value
@@ -46,6 +65,23 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
       },
     ],
   });
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      // If clicked outside the divs container, remove the highlight
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setHighlightedDivId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async (currency, type, v1, v2, v3, v4) => {
@@ -147,6 +183,11 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
     }
   }, [selectedValueSend]);
 
+  const handleClick = (id) => {
+    // Set the clicked div as the only highlighted div
+    setHighlightedDivId(id);
+  };
+
   const chartoptions = {
     scales: {
       x: {
@@ -181,10 +222,6 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
     });
   };
 
-  const handleConnectWallet = () => {
-    onConnectWallet(true);
-  };
-
   function shortenString(str) {
     if (str.length <= 6) {
       return str; // If already shorten
@@ -195,7 +232,7 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
   let nested_layout = (
     <div
       style={{
-        backgroundColor: "#565030",
+        backgroundColor: "#162125",
         padding: "5%",
         borderRadius: "10px",
       }}
@@ -210,8 +247,12 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
         You're paying
       </p>
       <div
+        ref={containerRef}
+        key={1}
+        className={`inputDiv ${highlightedDivId === 1 ? "borderHighlight" : ""}`}
+        onClick={() => handleClick(1)}
         style={{
-          backgroundColor: "#2b2d19",
+          backgroundColor: "#1f4452",
           padding: "2%",
           borderRadius: "10px",
           textAlign: "left",
@@ -225,7 +266,7 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
             value={selectedValueSend}
             onChange={handleChangeSend}
             style={{
-              backgroundColor: "#403e2c",
+              backgroundColor: "#0d303d",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
               width: "140px",
@@ -234,13 +275,13 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
           />
 
           <Input
-            className="inputDiv"
+            className="inputContent"
             placeholder="0.00"
             size="mini"
             type="number"
             input={{
               style: {
-                backgroundColor: "#2b2d19",
+                backgroundColor: "#1f4452",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
@@ -283,8 +324,12 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
         To receive
       </p>
       <div
+        ref={containerRef}
+        key={2}
+        className={`inputDiv ${highlightedDivId === 2 ? "borderHighlight" : ""}`}
+        onClick={() => handleClick(2)}
         style={{
-          backgroundColor: "#403e2c",
+          backgroundColor: "#0d303d",
           padding: "2%",
           borderRadius: "10px",
           textAlign: "left",
@@ -298,7 +343,7 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
             value={selectedValueReceive}
             onChange={handleChangeReceive}
             style={{
-              backgroundColor: "#2b2d19",
+              backgroundColor: "#1f4452",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
               width: "140px",
@@ -307,13 +352,13 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
           />
 
           <Input
-            className="inputDiv"
+            className="inputContent"
             placeholder="0.00"
             size="mini"
             type="number"
             input={{
               style: {
-                backgroundColor: "#403e2c",
+                backgroundColor: "#0d303d",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
@@ -325,8 +370,8 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
         </div>
       </div>
 
-      <button
-        className="methodbutton"
+      <Button
+        className="custom-button"
         style={{
           marginTop: "3%",
           width: "100%",
@@ -339,7 +384,7 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
         }}
       >
         Swap
-      </button>
+      </Button>
     </div>
   );
 
@@ -347,9 +392,13 @@ function Swap({ account = null, onConnectWallet, tokenOptions }) {
 
   if (account === null) {
     layout = (
-      <div style={{ cursor: "pointer" }} onClick={handleConnectWallet}>
-        <Message negative>Connect Wallet First</Message>
-      </div>
+      <Button
+        className="custom-button"
+        onClick={openModal}
+        style={{ padding: "2%" }}
+      >
+        Connect Wallet First
+      </Button>
     );
   } else if (account === -1) {
     layout = <Message negative>Error connecting to Wallet</Message>;

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { Message, Dropdown, Input, Image } from "semantic-ui-react";
+import React, { useState, useEffect, useRef } from "react";
+
+import { useModal } from "./ModalContext";
+
+import { Message, Dropdown, Input, Image, Button } from "semantic-ui-react";
 import flip from "../assets/flip.svg";
 
 import "./methods.css";
+import "./buttonstyle.css";
 
 function LimitOrder({
   account = null,
-  onConnectWallet,
   tokenOptions,
   expiryOptions,
   selectedValueSend,
@@ -16,10 +19,37 @@ function LimitOrder({
   selectedValueExpiry,
   setSelectedValueExpiry,
 }) {
+  const containerRef = useRef(null);
+
+  const { openModal } = useModal();
+
+  const [highlightedDivId, setHighlightedDivId] = useState(null);
   const [inputAmount, setInputAmount] = useState(0);
   const [outputAmount, setOutputAmount] = useState(0);
   const [rate, setRate] = useState(0);
   useState(selectedValueExpiry);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      // If clicked outside the divs container, remove the highlight
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setHighlightedDivId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const handleClick = (id) => {
+    // Set the clicked div as the only highlighted div
+    setHighlightedDivId(id);
+  };
 
   const handleChangeSend = (e, { value }) => {
     setSelectedValueSend(value);
@@ -40,10 +70,6 @@ function LimitOrder({
     });
   };
 
-  const handleConnectWallet = () => {
-    onConnectWallet(true);
-  };
-
   const handleProceed = () => {
     console.log(inputAmount, outputAmount, rate, selectedValueExpiry);
   };
@@ -51,7 +77,7 @@ function LimitOrder({
   let nested_layout = (
     <div
       style={{
-        backgroundColor: "#565030",
+        backgroundColor: "#162125",
         padding: "5%",
         borderRadius: "10px",
       }}
@@ -67,8 +93,12 @@ function LimitOrder({
       </p>
 
       <div
+        ref={containerRef}
+        key={1}
+        className={`inputDiv ${highlightedDivId === 1 ? "borderHighlight" : ""}`}
+        onClick={() => handleClick(1)}
         style={{
-          backgroundColor: "#2b2d19",
+          backgroundColor: "#1f4452",
           padding: "2%",
           borderRadius: "10px",
           textAlign: "left",
@@ -82,7 +112,7 @@ function LimitOrder({
             value={selectedValueSend}
             onChange={handleChangeSend}
             style={{
-              backgroundColor: "#403e2c",
+              backgroundColor: "#0d303d",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
               width: "140px",
@@ -91,14 +121,14 @@ function LimitOrder({
           />
 
           <Input
-            className="inputDiv"
+            className="inputContent"
             placeholder="0.00"
             size="mini"
             type="number"
             onChange={(e) => setInputAmount(e.target.value)}
             input={{
               style: {
-                backgroundColor: "#2b2d19",
+                backgroundColor: "#1f4452",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
@@ -141,8 +171,12 @@ function LimitOrder({
         To receive
       </p>
       <div
+        ref={containerRef}
+        key={2}
+        className={`inputDiv ${highlightedDivId === 2 ? "borderHighlight" : ""}`}
+        onClick={() => handleClick(2)}
         style={{
-          backgroundColor: "#403e2c",
+          backgroundColor: "#0d303d",
           padding: "2%",
           borderRadius: "10px",
           textAlign: "left",
@@ -156,7 +190,7 @@ function LimitOrder({
             value={selectedValueReceive}
             onChange={handleChangeReceive}
             style={{
-              backgroundColor: "#2b2d19",
+              backgroundColor: "#1f4452",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
               width: "140px",
@@ -165,14 +199,14 @@ function LimitOrder({
           />
 
           <Input
-            className="inputDiv"
+            className="inputContent"
             placeholder="0.00"
             size="mini"
             type="number"
             onChange={(e) => setOutputAmount(e.target.value)}
             input={{
               style: {
-                backgroundColor: "#403e2c",
+                backgroundColor: "#0d303d",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
@@ -192,14 +226,17 @@ function LimitOrder({
           alignItems: "stretch",
         }}
       >
-        {/* Rate info div */}
         <div
+          ref={containerRef}
+          key={3}
+          className={`inputDiv ${highlightedDivId === 3 ? "borderHighlight" : ""}`}
+          onClick={() => handleClick(3)}
           style={{
             flex: "3",
-            backgroundColor: "#2b2d19",
+            backgroundColor: "#1f4452",
             color: "white",
             border: "none",
-            borderRadius: "4px",
+            borderRadius: "10px",
             padding: "2%",
             display: "flex",
             justifyContent: "space-between",
@@ -214,7 +251,7 @@ function LimitOrder({
               style={{
                 display: "flex",
                 alignItems: "center",
-                backgroundColor: "#2b2d19",
+                backgroundColor: "#1f4452",
                 marginTop: "2%",
               }}
             >
@@ -224,7 +261,7 @@ function LimitOrder({
                 onChange={(e) => setRate(e.target.value)}
                 input={{
                   style: {
-                    backgroundColor: "#2b2d19",
+                    backgroundColor: "#1f4452",
                     color: "white",
                     border: "none",
                     borderRadius: "4px",
@@ -235,13 +272,13 @@ function LimitOrder({
                 }}
                 placeholder="0.00"
               />
-              <span
+              {/* <span
                 style={{
                   color: "green",
                 }}
               >
                 ~ 110.556
-              </span>
+              </span> */}
             </div>
           </div>
 
@@ -260,11 +297,15 @@ function LimitOrder({
         </div>
 
         <div
+          ref={containerRef}
+          key={4}
+          className={`inputDiv ${highlightedDivId === 4 ? "borderHighlight" : ""}`}
+          onClick={() => handleClick(4)}
           style={{
             flex: "1",
-            backgroundColor: "#2b2d19",
+            backgroundColor: "#1f4452",
             padding: "2%",
-            borderRadius: "4px",
+            borderRadius: "10px",
             textAlign: "left",
             display: "flex",
             flexDirection: "column",
@@ -287,7 +328,7 @@ function LimitOrder({
             value={selectedValueExpiry}
             onChange={handleChangeExpiry}
             style={{
-              backgroundColor: "#403e2c",
+              backgroundColor: "#0d303d",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
             }}
@@ -295,8 +336,8 @@ function LimitOrder({
         </div>
       </div>
 
-      <button
-        className="methodbutton"
+      <Button
+        className="custom-button"
         onClick={handleProceed}
         style={{
           marginTop: "3%",
@@ -310,7 +351,7 @@ function LimitOrder({
         }}
       >
         Proceed
-      </button>
+      </Button>
     </div>
   );
 
@@ -318,8 +359,20 @@ function LimitOrder({
 
   if (account === null) {
     layout = (
-      <div style={{ cursor: "pointer" }} onClick={handleConnectWallet}>
-        <Message negative>Connect Wallet First</Message>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          className="custom-button"
+          onClick={openModal}
+          style={{ padding: "2%" }}
+        >
+          Connect Wallet First
+        </Button>
       </div>
     );
   } else if (account === -1) {

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useModal } from "./ModalContext";
+
 import Swap from "./Swap";
 import LimitOrder from "./LimitOrder";
 import DCA from "./DCA";
+import Pool from "./Pool";
+import Stake from "./Stake";
 import TradingView from "./TradingView";
 
 import { Grid } from "semantic-ui-react";
@@ -10,7 +14,11 @@ import axios from "axios";
 
 import { tokenOptions, expiryOptions, dcaOptions } from "./options";
 
-function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
+function TradingWorks({ account = null }) {
+  const { selectedOperationType, selectedType, setSelectedType } = useModal();
+
+  const [method, setMethod] = useState("pool");
+
   const [selectedValueSend, setSelectedValueSend] = useState(
     tokenOptions[0].value
   );
@@ -35,6 +43,24 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
   const [selectedTimeline, setSelectedTimeline] = useState("7 days");
 
   const [graphProcessingResult, setGraphProcessingResult] = useState(0);
+
+  useEffect(() => {
+    if (selectedType === "pool" || selectedType === "stake") {
+      if (selectedOperationType === 0) {
+        setMethod(selectedType);
+      } else {
+        setMethod("swap");
+        setSelectedType("swap");
+      }
+    } else {
+      if (selectedOperationType === 1) {
+        setMethod(selectedType);
+      } else {
+        setMethod("pool");
+        setSelectedType("pool");
+      }
+    }
+  }, [selectedOperationType, selectedType, setSelectedType]);
 
   useEffect(() => {
     const fetchData = async (currency, type) => {
@@ -114,17 +140,13 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
 
   let layout = <div></div>;
 
-  if (selectedType === 0) {
+  if (method === "swap") {
     layout = (
       <div>
-        <Swap
-          account={account}
-          onConnectWallet={onConnectWallet}
-          tokenOptions={tokenOptions}
-        />
+        <Swap account={account} tokenOptions={tokenOptions} />
       </div>
     );
-  } else if (selectedType === 1) {
+  } else if (method === "lo") {
     layout = (
       <div style={{ marginBottom: "1%" }}>
         <Grid centered>
@@ -183,7 +205,6 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
                   <Grid.Column width={6}>
                     <LimitOrder
                       account={account}
-                      onConnectWallet={onConnectWallet}
                       tokenOptions={tokenOptions}
                       expiryOptions={expiryOptions}
                       selectedValueSend={selectedValueSend}
@@ -200,7 +221,6 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
                   <Grid.Column width={16}>
                     <LimitOrder
                       account={account}
-                      onConnectWallet={onConnectWallet}
                       tokenOptions={tokenOptions}
                       expiryOptions={expiryOptions}
                       selectedValueSend={selectedValueSend}
@@ -218,7 +238,7 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
         </Grid>
       </div>
     );
-  } else {
+  } else if (method === "dca") {
     layout = (
       <div style={{ marginBottom: "1%" }}>
         <Grid centered>
@@ -277,7 +297,6 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
                   <Grid.Column width={6}>
                     <DCA
                       account={account}
-                      onConnectWallet={onConnectWallet}
                       tokenOptions={tokenOptions}
                       dcaOptions={dcaOptions}
                       selectedValueSend={selectedValueSend}
@@ -294,7 +313,6 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
                   <Grid.Column width={16}>
                     <DCA
                       account={account}
-                      onConnectWallet={onConnectWallet}
                       tokenOptions={tokenOptions}
                       dcaOptions={dcaOptions}
                       selectedValueSend={selectedValueSend}
@@ -312,6 +330,18 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
         </Grid>
       </div>
     );
+  } else if (method === "pool") {
+    layout = (
+      <div>
+        <Pool account={account} tokenOptions={tokenOptions} />
+      </div>
+    );
+  } else {
+    layout = (
+      <div>
+        <Stake account={account} tokenOptions={tokenOptions} />
+      </div>
+    );
   }
 
   return (
@@ -321,7 +351,8 @@ function TradingWorks({ selectedType = 0, account = null, onConnectWallet }) {
           marginLeft: "4%",
           marginRight: "4%",
           marginTop: "20px",
-          backgroundColor: "#36331c",
+          backgroundImage:
+            "linear-gradient(to bottom, #202f35, #162125, #202f35)",
           borderRadius: "10px",
         }}
       >

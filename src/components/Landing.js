@@ -1,9 +1,11 @@
 import React from "react";
 import { Grid, Image } from "semantic-ui-react";
-import rectangle from "../assets/rectangle.gif";
+import LandingFeatures from "./LandingFeatures";
+
+// import rectangle from "../assets/rectangle.gif";
+import background from "../assets/background.png";
 
 import "./landing.css";
-import LandingFeatures from "./LandingFeatures";
 
 function Landing() {
   return (
@@ -31,7 +33,7 @@ function Landing() {
           </Grid.Column>
 
           <Grid.Column width={6} verticalAlign="middle">
-            <Image src={rectangle} style={{ width: "100%", height: "100%" }} />
+            <Image src={background} style={{ width: "100%", height: "100%" }} />
           </Grid.Column>
         </Grid.Row>
 
@@ -55,7 +57,7 @@ function Landing() {
                   <div style={{ position: "relative", width: "100%" }}>
                     <div style={{ paddingTop: "10%" }}>
                       <Image
-                        src={rectangle}
+                        src={background}
                         size="large"
                         style={{
                           display: "block",

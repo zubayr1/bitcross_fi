@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LandingPage from './components/LandingPage';
-import Trade from './components/Trade';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import Trade from "./components/Trade";
+import { ModalProvider } from "./components/ModalContext";
 
 function App() {
   return (
@@ -8,12 +9,17 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/trade" element={<Trade />} />
-          
+          <Route
+            exact
+            path="/trade"
+            element={
+              <ModalProvider>
+                <Trade />
+              </ModalProvider>
+            }
+          />
         </Routes>
       </Router>
-
-      
     </div>
   );
 }

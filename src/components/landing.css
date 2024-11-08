@@ -1,13 +1,14 @@
 /* Define the font styles */
 .heading {
   font-family: 'Railway', sans-serif;
-  font-weight: 800; /* Extra bold */
+  font-weight: 800;
+  /* Extra bold */
   color: white;
   color: transparent;
-  background: linear-gradient(90deg, #544a27, #a38312);
+  background: linear-gradient(90deg, #f9faf2, #6f8586);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   margin: 0;
   line-height: 1;
   white-space: normal;
@@ -42,7 +43,8 @@
 /* Subheading styles */
 .subheading {
   font-family: 'Railway', sans-serif;
-  font-weight: 500; /* Medium */
+  font-weight: 500;
+  /* Medium */
   color: white;
   margin: 0;
   text-align: center;

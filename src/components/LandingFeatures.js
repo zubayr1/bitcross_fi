@@ -81,7 +81,6 @@ function LandingFeatures() {
           </div>
         </Grid.Row>
 
-
         <Grid.Row only="tablet">
           <Grid centered>
             <Grid.Row>
@@ -128,7 +127,7 @@ function LandingFeatures() {
                     </Grid>
                   </Grid.Column>
                 </Grid>
-              </div>              
+              </div>
             </Grid.Row>
 
             <Grid.Row>
@@ -150,11 +149,10 @@ function LandingFeatures() {
                     </Grid>
                   </Grid.Column>
                 </Grid>
-              </div>              
-            </Grid.Row>           
-          </Grid>          
+              </div>
+            </Grid.Row>
+          </Grid>
         </Grid.Row>
-
 
         <Grid.Row
           only="mobile"
@@ -172,11 +170,11 @@ function LandingFeatures() {
                   </Grid.Row>
                   <Grid.Row centered>
                     <Grid.Column>
-                    <p className="feature-heading">Atomic Swap</p>
-                    <p className="feature-text">
-                      Trustless asset transfer between chains
-                    </p>
-                    </Grid.Column>                    
+                      <p className="feature-heading">Atomic Swap</p>
+                      <p className="feature-text">
+                        Trustless asset transfer between chains
+                      </p>
+                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </div>
@@ -193,7 +191,7 @@ function LandingFeatures() {
                       <p className="feature-text">
                         Automated trades for consistent profit
                       </p>
-                    </Grid.Column>                    
+                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </div>
@@ -210,7 +208,7 @@ function LandingFeatures() {
                       <p className="feature-text">
                         Experience LP-to-trader exchange
                       </p>
-                    </Grid.Column>                    
+                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </div>

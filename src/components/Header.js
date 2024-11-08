@@ -1,140 +1,342 @@
-import React, { useState, useEffect } from 'react'
-import { Grid, Image, Button } from 'semantic-ui-react'
+import React from "react";
+import { useModal } from "./ModalContext";
 
-import logo from '../assets/logo.svg';
-// import telegram from '../assets/telegram_icon.svg';
-import twitter from '../assets/twitter_icon.svg';
-import gitbook from '../assets/gitbook.svg';
-// import medium from '../assets/medium_icon.svg';
-import launch_icon from '../assets/launch_icon.svg';
+import { Grid, Image, Button, Dropdown, Icon } from "semantic-ui-react";
 
-import { useNavigate, useLocation } from 'react-router-dom'
+import WalletConnectButton from "./WalletConnectButton";
 
-function Header() {
-    const navigate = useNavigate();
-    const location = useLocation();
+import logo from "../assets/logo.svg";
+import twitter from "../assets/twitter_icon.svg";
+import gitbook from "../assets/gitbook.svg";
+import launch_icon from "../assets/launch_icon.svg";
 
-    const [currentLocation, setCurrentLocation] = useState('/');
+import { useNavigate } from "react-router-dom";
 
-    const handleButtonClick = () =>
-    {
-        if(currentLocation === '/')
-        {
-            navigate('/trade');
-        }
-        else
-        {
-            navigate('/');
-        }
+import "./landingfeatures.css";
+import "./buttonstyle.css";
+
+function Header({ weblocation }) {
+  const navigate = useNavigate();
+
+  const { selectedOperationType, setSelectedOperationType } = useModal();
+
+  const handleMethodChange = (method) => {
+    setSelectedOperationType(method);
+  };
+
+  const handleButtonClick = () => {
+    navigate("/trade");
+  };
+
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
+  const handleIconClick = (link) => {
+    if (link === "x") {
+      window.open("https://x.com/bitcrossfi", "_blank");
+    } else if (link === "gitbook") {
+      window.open(
+        "https://bitcross-organization.gitbook.io/bitcross",
+        "_blank"
+      );
     }
+  };
 
-    useEffect(() => {
-        setCurrentLocation(location.pathname);
-      }, [location]);
+  let layout;
 
-    const handleIconClick = (link) => {
-        if (link === 'x') {
-            window.open('https://x.com/bitcrossfi', '_blank');
-        } else if (link === 'gitbook') {
-            window.open('https://bitcross-organization.gitbook.io/bitcross', '_blank');
-        }
-    }
+  if (weblocation === "landingpage") {
+    layout = (
+      <Grid verticalAlign="middle" columns={3} centered>
+        <Grid.Row only="computer">
+          <Grid.Column width={3} floated="left">
+            <Image
+              src={logo}
+              size="small"
+              style={{ width: "35%", height: "auto", cursor: "pointer" }}
+              onClick={handleLogoClick}
+            />
+          </Grid.Column>
+
+          <Grid.Column width={8} floated="right" verticalAlign="middle">
+            <Grid>
+              <Grid.Column width={3} floated="right" verticalAlign="middle">
+                <Grid>
+                  <Grid.Column width={8}>
+                    <div onClick={() => handleIconClick("x")}>
+                      <Image
+                        src={twitter}
+                        size="mini"
+                        style={{ cursor: "pointer" }}
+                      />
+                    </div>
+                  </Grid.Column>
+
+                  <Grid.Column width={8}>
+                    <div onClick={() => handleIconClick("gitbook")}>
+                      <Image
+                        src={gitbook}
+                        size="mini"
+                        style={{ cursor: "pointer", filter: "invert(95%)" }}
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid>
+              </Grid.Column>
+
+              <Grid.Column width={6} floated="right" verticalAlign="middle">
+                <Button onClick={handleButtonClick} className="custom-button">
+                  Launch App
+                  <Image src={launch_icon} avatar />
+                </Button>
+              </Grid.Column>
+            </Grid>
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row only="tablet">
+          <Grid.Column width={4} floated="left">
+            <Image
+              src={logo}
+              size="small"
+              style={{ width: "50%", height: "auto", cursor: "pointer" }}
+            />
+          </Grid.Column>
+
+          <Grid.Column width={5} floated="right">
+            <Grid>
+              <Grid.Column width={6}>
+                <div onClick={() => handleIconClick("x")}>
+                  <Image
+                    src={twitter}
+                    size="mini"
+                    style={{ cursor: "pointer" }}
+                    onClick={handleLogoClick}
+                  />
+                </div>
+              </Grid.Column>
+
+              <Grid.Column width={6}>
+                <div onClick={() => handleIconClick("gitbook")}>
+                  <Image
+                    src={gitbook}
+                    size="mini"
+                    style={{ cursor: "pointer", filter: "invert(95%)" }}
+                  />
+                </div>
+              </Grid.Column>
+            </Grid>
+          </Grid.Column>
+
+          <Grid.Column width={6} floated="right" verticalAlign="middle">
+            <Button onClick={handleButtonClick} className="custom-button">
+              Launch App
+              <Image src={launch_icon} avatar />
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row only="mobile">
+          <Grid.Column width={4} floated="left" style={{ marginTop: "4%" }}>
+            <Image
+              src={logo}
+              size="small"
+              floated="left"
+              style={{ cursor: "pointer" }}
+              onClick={handleLogoClick}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
+  } else {
+    layout = (
+      <Grid verticalAlign="middle" columns={3} centered>
+        <Grid.Row only="computer">
+          <Grid.Column width={3} floated="left">
+            <Image
+              src={logo}
+              size="small"
+              style={{ width: "35%", height: "auto", cursor: "pointer" }}
+              onClick={handleLogoClick}
+            />
+          </Grid.Column>
+
+          <Grid.Column width={10} verticalAlign="middle">
+            <Grid centered>
+              <Grid.Row centered>
+                <Grid.Column width={4} textAlign="center">
+                  <div
+                    className="type-container"
+                    style={{
+                      backgroundImage:
+                        selectedOperationType === 0
+                          ? "linear-gradient(to right, #283a41, #11192b)"
+                          : "none",
+                    }}
+                    onClick={() => handleMethodChange(0)}
+                  >
+                    <p style={{ color: "white" }}>Pool</p>
+                  </div>
+                </Grid.Column>
+
+                <Grid.Column width={4} textAlign="center">
+                  <div
+                    className="type-container"
+                    style={{
+                      backgroundImage:
+                        selectedOperationType === 1
+                          ? "linear-gradient(to right, #283a41, #11192b)"
+                          : "none",
+                    }}
+                    onClick={() => handleMethodChange(1)}
+                  >
+                    <p style={{ color: "white" }}>Trade</p>
+                  </div>
+                </Grid.Column>
+
+                <Grid.Column width={4} textAlign="center">
+                  <div className="type-container-disabled">
+                    <p style={{ color: "white" }}>Perps</p>
+                  </div>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Grid.Column>
+
+          <Grid.Column width={3} floated="right" verticalAlign="middle">
+            <WalletConnectButton />
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row only="tablet">
+          <Grid.Column width={4} floated="left">
+            <Image
+              src={logo}
+              size="small"
+              style={{ width: "50%", height: "auto", cursor: "pointer" }}
+            />
+          </Grid.Column>
+
+          <Grid.Column width={8} verticalAlign="middle">
+            <Grid centered>
+              <Grid.Row centered>
+                <Grid.Column width={4} textAlign="center">
+                  <div
+                    className="type-container"
+                    style={{
+                      backgroundImage:
+                        selectedOperationType === 0
+                          ? "linear-gradient(to right, #283a41, #11192b)"
+                          : "none",
+                    }}
+                    onClick={() => handleMethodChange(0)}
+                  >
+                    <p style={{ color: "white" }}>pool</p>
+                  </div>
+                </Grid.Column>
+
+                <Grid.Column width={4} textAlign="center">
+                  <div
+                    className="type-container"
+                    style={{
+                      backgroundImage:
+                        selectedOperationType === 1
+                          ? "linear-gradient(to right, #283a41, #11192b)"
+                          : "none",
+                    }}
+                    onClick={() => handleMethodChange(1)}
+                  >
+                    <p style={{ color: "white" }}>Trade</p>
+                  </div>
+                </Grid.Column>
+
+                <Grid.Column width={4} textAlign="center">
+                  <div className="type-container-disabled">
+                    <p style={{ color: "white" }}>Perps</p>
+                  </div>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Grid.Column>
+
+          <Grid.Column width={4} floated="right" verticalAlign="middle">
+            <WalletConnectButton />
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row only="mobile" style={{ marginTop: "2%", marginBottom: "2%" }}>
+          <Grid.Column width={4} floated="left">
+            <Image
+              src={logo}
+              size="small"
+              floated="left"
+              style={{ cursor: "pointer" }}
+              onClick={handleLogoClick}
+            />
+          </Grid.Column>
+
+          <Grid.Column width={4} textAlign="right">
+            <Dropdown
+              item
+              icon="bars"
+              direction="left"
+              simple
+              style={{
+                paddingRight: "5%",
+                color: "white",
+                zIndex: "5",
+                position: "relative",
+              }}
+            >
+              <Dropdown.Menu style={{ zIndex: "5" }}>
+                <Dropdown.Item
+                  style={{
+                    backgroundColor:
+                      selectedOperationType === 0 ? "#6f8586" : "",
+                  }}
+                  onClick={() => handleMethodChange(0)}
+                >
+                  <Icon name="database" />
+                  Pool
+                </Dropdown.Item>
+                <Dropdown.Item
+                  style={{
+                    backgroundColor:
+                      selectedOperationType === 1 ? "#6f8586" : "",
+                  }}
+                  onClick={() => handleMethodChange(1)}
+                >
+                  <Icon name="fire" />
+                  Trade
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Icon name="settings" />
+                  Perps
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <WalletConnectButton />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
+  }
 
   return (
-    <div style={{paddingTop:'2%', paddingLeft:'6%', paddingRight:'6%', overflow:'hidden'}}>
-        <Grid verticalAlign='middle' columns={3} centered>
-            <Grid.Row only='computer'>
-                <Grid.Column width={3} floated='left'>
-                    <Image src={logo} size='small' style={{width:'35%', height:'auto'}}/>
-                </Grid.Column>
-
-                <Grid.Column width={8} floated='right' verticalAlign='middle'>
-                    <Grid>
-                        <Grid.Column width={3} floated='right' verticalAlign='middle'>
-                            <Grid>
-                                {/* <Grid.Column width={3}>
-                                    <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
-                                </Grid.Column> */}
-
-                                <Grid.Column width={8}>
-                                    <div onClick={()=> handleIconClick('x')}>
-                                        <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
-                                    </div>
-                                </Grid.Column>
-
-                                <Grid.Column width={8}>
-                                    <div onClick={()=> handleIconClick('gitbook')}>
-                                        <Image src={gitbook} size='mini' style={{ cursor: 'pointer', filter: 'invert(95%)' }}/>
-                                    </div>
-                                </Grid.Column>
-
-                                {/* <Grid.Column width={3}>
-                                    <Image src={medium} size='mini' style={{cursor: 'pointer'}}/>
-                                </Grid.Column> */}                                
-                            </Grid>                            
-                        </Grid.Column>
-
-                        <Grid.Column width={6} floated='right' verticalAlign='middle'>
-                            <Button onClick={handleButtonClick} 
-                                style={{ backgroundColor: 'rgba(88, 76, 34, 0.3)', 
-                                    color: 'white',
-                                    border: '2px solid #584C22' 
-                                }}>
-                                    {currentLocation === '/' ? (
-                                        <>
-                                        Launch App
-                                        <Image src={launch_icon} avatar />
-                                        </>
-                                    ) : (
-                                        'Back'
-                                    )}
-                                </Button>
-                        </Grid.Column>                        
-                    </Grid>
-                </Grid.Column>
-            </Grid.Row>
-
-
-            <Grid.Row only='tablet'>
-                <Grid.Column width={4}  floated='left'>
-                    <Image src={logo} size='small' style={{width:'50%', height:'auto'}}/>
-                </Grid.Column>
-
-                <Grid.Column width={5} floated='right'>
-                    <Grid>
-                        {/* <Grid.Column width={3}>
-                            <Image src={telegram} size='mini' style={{cursor: 'pointer'}}/>
-                        </Grid.Column> */}
-
-                        <Grid.Column width={6}>
-                            <div onClick={()=> handleIconClick('x')}>
-                                <Image src={twitter} size='mini' style={{cursor: 'pointer'}}/>
-                            </div>
-                        </Grid.Column>
-
-                        <Grid.Column width={6}>
-                            <div onClick={()=> handleIconClick('gitbook')}>
-                                <Image src={gitbook} size='mini' style={{ cursor: 'pointer', filter: 'invert(95%)' }}/>
-                            </div>
-                        </Grid.Column>
-
-                        {/* <Grid.Column width={3}>
-                            <Image src={medium} size='mini' style={{cursor: 'pointer'}}/>
-                        </Grid.Column> */}
-                    </Grid>
-                </Grid.Column>
-
-            </Grid.Row>
-
-
-            <Grid.Row only='mobile'>
-                <Grid.Column width={4} floated='left' style={{marginTop:'4%'}}>
-                    <Image src={logo} size='small' floated='left'/>
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
+    <div
+      style={{
+        paddingTop: "1%",
+        paddingBottom: "1%",
+        paddingLeft: "6%",
+        paddingRight: "6%",
+      }}
+    >
+      {layout}
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

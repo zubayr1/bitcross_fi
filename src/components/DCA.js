@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { Message, Dropdown, Input, Image } from "semantic-ui-react";
+import React, { useState, useEffect, useRef } from "react";
+
+import { useModal } from "./ModalContext";
+
+import { Message, Dropdown, Input, Image, Button } from "semantic-ui-react";
 import flip from "../assets/flip.svg";
+
+import "./buttonstyle.css";
 
 function DCA({
   account = null,
-  onConnectWallet,
   tokenOptions,
   dcaOptions,
   selectedValueSend,
@@ -14,12 +18,37 @@ function DCA({
   selecteddcaOptions,
   setSelecteddcaOptions,
 }) {
+  const containerRef = useRef(null);
+
+  const { openModal } = useModal();
+
+  const [highlightedDivId, setHighlightedDivId] = useState(null);
   const [inputAmount, setInputAmount] = useState(0);
   const [outputAmount, setOutputAmount] = useState(0);
   const [orders, setOrders] = useState(2);
   const [interval, setInterval] = useState(1);
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(0);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      // If clicked outside the divs container, remove the highlight
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setHighlightedDivId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const handleClick = (id) => {
+    // Set the clicked div as the only highlighted div
+    setHighlightedDivId(id);
+  };
 
   const handleChangeSend = (e, { value }) => {
     setSelectedValueSend(value);
@@ -40,18 +69,12 @@ function DCA({
     });
   };
 
-  const handleConnectWallet = () => {
-    onConnectWallet(true);
-  };
-
   const handleProceed = () => {
     console.log(
       inputAmount,
       outputAmount,
       orders,
       interval,
-      min,
-      max,
       selecteddcaOptions
     );
   };
@@ -59,7 +82,7 @@ function DCA({
   let nested_layout = (
     <div
       style={{
-        backgroundColor: "#565030",
+        backgroundColor: "#162125",
         padding: "5%",
         borderRadius: "10px",
       }}
@@ -75,8 +98,12 @@ function DCA({
       </p>
 
       <div
+        ref={containerRef}
+        key={1}
+        className={`inputDiv ${highlightedDivId === 1 ? "borderHighlight" : ""}`}
+        onClick={() => handleClick(1)}
         style={{
-          backgroundColor: "#2b2d19",
+          backgroundColor: "#1f4452",
           padding: "2%",
           borderRadius: "10px",
           textAlign: "left",
@@ -90,7 +117,7 @@ function DCA({
             value={selectedValueSend}
             onChange={handleChangeSend}
             style={{
-              backgroundColor: "#403e2c",
+              backgroundColor: "#0d303d",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
               width: "140px",
@@ -99,14 +126,14 @@ function DCA({
           />
 
           <Input
-            className="inputDiv"
+            className="inputContent"
             placeholder="0.00"
             size="mini"
             type="number"
             onChange={(e) => setInputAmount(e.target.value)}
             input={{
               style: {
-                backgroundColor: "#2b2d19",
+                backgroundColor: "#1f4452",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
@@ -149,8 +176,12 @@ function DCA({
         To receive
       </p>
       <div
+        ref={containerRef}
+        key={2}
+        className={`inputDiv ${highlightedDivId === 2 ? "borderHighlight" : ""}`}
+        onClick={() => handleClick(2)}
         style={{
-          backgroundColor: "#403e2c",
+          backgroundColor: "#0d303d",
           padding: "2%",
           borderRadius: "10px",
           textAlign: "left",
@@ -164,7 +195,7 @@ function DCA({
             value={selectedValueReceive}
             onChange={handleChangeReceive}
             style={{
-              backgroundColor: "#2b2d19",
+              backgroundColor: "#1f4452",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
               width: "140px",
@@ -173,14 +204,14 @@ function DCA({
           />
 
           <Input
-            className="inputDiv"
+            className="inputContent"
             placeholder="0.00"
             size="mini"
             type="number"
             onChange={(e) => setOutputAmount(e.target.value)}
             input={{
               style: {
-                backgroundColor: "#403e2c",
+                backgroundColor: "#0d303d",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
@@ -201,9 +232,13 @@ function DCA({
         }}
       >
         <div
+          ref={containerRef}
+          key={3}
+          className={`inputDiv ${highlightedDivId === 3 ? "borderHighlight" : ""}`}
+          onClick={() => handleClick(3)}
           style={{
             flex: "1",
-            backgroundColor: "#2b2d19",
+            backgroundColor: "#1f4452",
             color: "white",
             border: "none",
             borderRadius: "10px",
@@ -231,7 +266,7 @@ function DCA({
                 onChange={(e) => setOrders(e.target.value)}
                 input={{
                   style: {
-                    backgroundColor: "#2b2d19",
+                    backgroundColor: "#1f4452",
                     color: "white",
                     border: "none",
                     borderRadius: "4px",
@@ -257,9 +292,13 @@ function DCA({
         </div>
 
         <div
+          ref={containerRef}
+          key={4}
+          className={`inputDiv ${highlightedDivId === 4 ? "borderHighlight" : ""}`}
+          onClick={() => handleClick(4)}
           style={{
             flex: "2",
-            backgroundColor: "#2b2d19",
+            backgroundColor: "#1f4452",
             padding: "2%",
             borderRadius: "10px",
             textAlign: "left",
@@ -286,14 +325,14 @@ function DCA({
             }}
           >
             <Input
-              className="inputDiv"
+              className="inputContent"
               placeholder="1"
               size="mini"
               type="number"
               onChange={(e) => setInterval(e.target.value)}
               input={{
                 style: {
-                  backgroundColor: "#2b2d19",
+                  backgroundColor: "#1f4452",
                   color: "white",
                   border: "none",
                   borderRadius: "1px",
@@ -311,7 +350,7 @@ function DCA({
               value={selecteddcaOptions}
               onChange={handleChangeDCA}
               style={{
-                backgroundColor: "#403e2c",
+                backgroundColor: "#0d303d",
                 color: "#ede7df",
                 fontFamily: "'Raleway', sans-serif",
                 width: "60%",
@@ -321,58 +360,8 @@ function DCA({
         </div>
       </div>
 
-      <div
-        style={{
-          backgroundColor: "#403e2c",
-          padding: "2%",
-          borderRadius: "10px",
-          textAlign: "left",
-          marginTop: "3%",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Input
-            className="inputDiv"
-            placeholder="min value"
-            size="mini"
-            type="number"
-            onChange={(e) => setMin(e.target.value)}
-            input={{
-              style: {
-                backgroundColor: "#2b2d19",
-                color: "white",
-                border: "none",
-                borderRadius: "10px",
-                padding: "10px",
-                fontSize: "1.2rem",
-                marginRight: "5%",
-              },
-            }}
-          />
-
-          <Input
-            className="inputDiv"
-            placeholder="max value"
-            size="mini"
-            type="number"
-            onChange={(e) => setMax(e.target.value)}
-            input={{
-              style: {
-                backgroundColor: "#2b2d19",
-                color: "white",
-                border: "none",
-                borderRadius: "10px",
-                padding: "10px",
-                fontSize: "1.2rem",
-                marginLeft: "5%",
-              },
-            }}
-          />
-        </div>
-      </div>
-
-      <button
-        className="methodbutton"
+      <Button
+        className="custom-button"
         onClick={handleProceed}
         style={{
           marginTop: "3%",
@@ -386,7 +375,7 @@ function DCA({
         }}
       >
         Proceed
-      </button>
+      </Button>
     </div>
   );
 
@@ -394,8 +383,20 @@ function DCA({
 
   if (account === null) {
     layout = (
-      <div style={{ cursor: "pointer" }} onClick={handleConnectWallet}>
-        <Message negative>Connect Wallet First</Message>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          className="custom-button"
+          onClick={openModal}
+          style={{ padding: "2%" }}
+        >
+          Connect Wallet First
+        </Button>
       </div>
     );
   } else if (account === -1) {
