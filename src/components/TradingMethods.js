@@ -48,7 +48,7 @@ function TradingMethods() {
       <Grid style={{ width: "100%" }}>
         <Grid.Row only="computer tablet" style={{ justifyContent: "center" }}>
           <Grid.Column
-            width={5}
+            width={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Grid
@@ -83,14 +83,14 @@ function TradingMethods() {
               <Grid.Column width={8} verticalAlign="middle">
                 <div className="new-header-text">
                   <p>Pool</p>
-                  <p>Invest with liquidity</p>
+                  <p>Invest in liquidity</p>
                 </div>
               </Grid.Column>
             </Grid>
           </Grid.Column>
 
           <Grid.Column
-            width={5}
+            width={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Grid
