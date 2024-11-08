@@ -193,7 +193,49 @@ function Stake({ account = null, tokenOptions }) {
     );
   }
 
-  return <div>{layout}</div>;
+  return (
+    <div>
+      <div style={{ paddingBottom: "2%" }}>
+        <Grid centered>
+          <Grid.Row only="computer">
+            <p
+              style={{
+                fontSize: "2.5rem",
+                color: "#ede7df",
+                fontFamily: "'Raleway', sans-serif",
+              }}
+            >
+              Stake
+            </p>
+          </Grid.Row>
+          <Grid.Row only="tablet">
+            <p
+              style={{
+                fontSize: "2rem",
+                color: "#ede7df",
+                fontFamily: "'Raleway', sans-serif",
+              }}
+            >
+              Stake
+            </p>
+          </Grid.Row>
+          <Grid.Row only="mobile">
+            <p
+              style={{
+                fontSize: "1.5rem",
+                color: "#ede7df",
+                fontFamily: "'Raleway', sans-serif",
+              }}
+            >
+              Stake
+            </p>
+          </Grid.Row>
+
+          <Grid.Row centered>{layout}</Grid.Row>
+        </Grid>
+      </div>
+    </div>
+  );
 }
 
 export default Stake;
