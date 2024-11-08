@@ -230,7 +230,9 @@ function Pool({ account = null, tokenOptions }) {
           </p>
         </Grid.Row>
 
-        <Grid.Row centered>{layout}</Grid.Row>
+        <Grid.Row centered>
+          <Grid.Column>{layout}</Grid.Column>
+        </Grid.Row>
       </Grid>
     </div>
   );
