@@ -8,7 +8,15 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <ModalProvider>
+                <LandingPage />
+              </ModalProvider>
+            }
+          />
           <Route
             exact
             path="/trade"
