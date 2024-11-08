@@ -165,32 +165,28 @@ function Pool({ account = null, tokenOptions }) {
 
   if (account === null) {
     layout = (
-      <Button
-        className="custom-button"
-        onClick={openModal}
-        style={{ padding: "2%" }}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        Connect Wallet First
-      </Button>
+        <Button
+          className="custom-button"
+          onClick={openModal}
+          style={{ padding: "4%" }}
+        >
+          Connect Wallet First
+        </Button>
+      </div>
     );
   } else if (account === -1) {
     layout = <Message negative>Error connecting to Wallet</Message>;
   } else if (account === -2) {
     layout = <Message negative>Wallet is not installed</Message>;
   } else {
-    layout = (
-      <Grid centered>
-        <Grid.Row only="computer">
-          <Grid.Column width={8}>{nested_layout}</Grid.Column>
-        </Grid.Row>
-        <Grid.Row only="tablet">
-          <Grid.Column width={10}>{nested_layout}</Grid.Column>
-        </Grid.Row>
-        <Grid.Row only="mobile">
-          <Grid.Column width={14}>{nested_layout}</Grid.Column>
-        </Grid.Row>
-      </Grid>
-    );
+    layout = nested_layout;
   }
 
   return (
@@ -231,7 +227,15 @@ function Pool({ account = null, tokenOptions }) {
         </Grid.Row>
 
         <Grid.Row centered>
-          <Grid.Column>{layout}</Grid.Column>
+          <Grid.Column only="computer" width={8}>
+            {layout}
+          </Grid.Column>
+          <Grid.Column only="tablet" width={12}>
+            {layout}
+          </Grid.Column>
+          <Grid.Column only="mobile" width={14}>
+            {layout}
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     </div>
