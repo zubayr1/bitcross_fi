@@ -371,7 +371,7 @@ function LimitOrder({
           onClick={openModal}
           style={{ padding: "2%" }}
         >
-          Connect Wallet First
+          Connect Wallet
         </Button>
       </div>
     );

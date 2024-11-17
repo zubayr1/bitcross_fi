@@ -397,7 +397,7 @@ function Swap({ account = null, tokenOptions }) {
         onClick={openModal}
         style={{ padding: "2%" }}
       >
-        Connect Wallet First
+        Connect Wallet
       </Button>
     );
   } else if (account === -1) {

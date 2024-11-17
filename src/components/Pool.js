@@ -177,7 +177,7 @@ function Pool({ account = null, tokenOptions }) {
           onClick={openModal}
           style={{ padding: "4%" }}
         >
-          Connect Wallet First
+          Connect Wallet
         </Button>
       </div>
     );
