@@ -173,6 +173,9 @@ function Header({ weblocation }) {
                         selectedOperationType === 0
                           ? "linear-gradient(to right, #283a41, #11192b)"
                           : "none",
+
+                      fontWeight:
+                        selectedOperationType === 0 ? "bold" : "normal",
                     }}
                     onClick={() => handleMethodChange(0)}
                   >
@@ -188,6 +191,9 @@ function Header({ weblocation }) {
                         selectedOperationType === 1
                           ? "linear-gradient(to right, #283a41, #11192b)"
                           : "none",
+
+                      fontWeight:
+                        selectedOperationType === 1 ? "bold" : "normal",
                     }}
                     onClick={() => handleMethodChange(1)}
                   >
@@ -229,6 +235,8 @@ function Header({ weblocation }) {
                         selectedOperationType === 0
                           ? "linear-gradient(to right, #283a41, #11192b)"
                           : "none",
+                      fontWeight:
+                        selectedOperationType === 0 ? "bold" : "normal",
                     }}
                     onClick={() => handleMethodChange(0)}
                   >
@@ -244,6 +252,8 @@ function Header({ weblocation }) {
                         selectedOperationType === 1
                           ? "linear-gradient(to right, #283a41, #11192b)"
                           : "none",
+                      fontWeight:
+                        selectedOperationType === 1 ? "bold" : "normal",
                     }}
                     onClick={() => handleMethodChange(1)}
                   >
