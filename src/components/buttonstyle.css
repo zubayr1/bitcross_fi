@@ -9,3 +9,16 @@
     border-color: #a6bdbe !important;
     background-image: linear-gradient(to bottom, #162125, #1f2d30, #162125) !important;
 }
+
+
+.ui.disconnect-button {
+    background-color: #1f4452 !important;
+    color: white !important;
+    border: 2px solid #6f8586 !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.ui.disconnect-button:hover {
+    border-color: #a6bdbe !important;
+    background-color: #0d303d !important;
+}

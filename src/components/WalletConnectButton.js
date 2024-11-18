@@ -14,7 +14,8 @@ import "./buttonstyle.css";
 function WalletConnectButton() {
   const { isModalOpen, closeModal } = useModal();
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [connectmodalOpen, setConnectModalOpen] = useState(false);
+  const [disconnectmodalOpen, setDisconnectModalOpen] = useState(false);
   const [account, setAccount] = useState(null);
 
   const appConfig = new AppConfig(["store_write", "publish_data"]);
@@ -44,18 +45,23 @@ function WalletConnectButton() {
   }, []);
 
   useEffect(() => {
-    if (isModalOpen) setModalOpen(true);
-    if (!isModalOpen) setModalOpen(false);
+    if (isModalOpen) setConnectModalOpen(true);
+    if (!isModalOpen) setConnectModalOpen(false);
   }, [isModalOpen]);
 
   const handleOpenWalletModal = () => {
     if (account === null || account === -1 || account === -2)
-      setModalOpen(true);
+      setConnectModalOpen(true);
+    else setDisconnectModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
+  const handleCloseConnectModal = () => {
+    setConnectModalOpen(false);
     closeModal();
+  };
+
+  const handleCloseDisconnectModal = () => {
+    setDisconnectModalOpen(false);
   };
 
   const handleWalletConnect = async (walletType) => {
@@ -120,7 +126,7 @@ function WalletConnectButton() {
             setAccount(userData.identityAddress);
             sessionStorage.setItem("account_address", userData.identityAddress);
 
-            handleCloseModal();
+            handleCloseConnectModal();
             window.location.reload();
           },
           userSession,
@@ -128,12 +134,19 @@ function WalletConnectButton() {
         });
       } else {
         setAccount(-1);
-        handleCloseModal();
+        handleCloseConnectModal();
       }
     } catch (error) {
       setAccount(-2);
-      handleCloseModal();
+      handleCloseConnectModal();
     }
+  };
+
+  const handleWalletDisconnect = async () => {
+    localStorage.removeItem("blockstack-session");
+    sessionStorage.removeItem("account_address");
+    setDisconnectModalOpen(false);
+    window.location.reload();
   };
 
   return (
@@ -144,8 +157,8 @@ function WalletConnectButton() {
 
       {/* Modal for Connect Wallet */}
       <Modal
-        open={modalOpen}
-        onClose={handleCloseModal}
+        open={connectmodalOpen}
+        onClose={handleCloseConnectModal}
         size="small"
         style={{
           borderRadius: "10px",
@@ -174,7 +187,7 @@ function WalletConnectButton() {
             <Icon
               name="close"
               style={{ cursor: "pointer" }}
-              onClick={handleCloseModal}
+              onClick={handleCloseConnectModal}
             />
           </div>
         </Modal.Header>
@@ -207,6 +220,81 @@ function WalletConnectButton() {
               <span style={{ color: "white", marginLeft: "0.5rem" }}>
                 Xverse
               </span>
+            </div>
+          </Modal.Description>
+        </Modal.Content>
+      </Modal>
+
+      {/* Modal for Disconnect Wallet */}
+      <Modal
+        open={disconnectmodalOpen}
+        onClose={handleCloseDisconnectModal}
+        size="small"
+        style={{
+          borderRadius: "10px",
+          backgroundImage:
+            "linear-gradient(to bottom, #060910, #162125, #060910)",
+          color: "white",
+        }}
+      >
+        <Modal.Header
+          style={{
+            fontSize: "1.5rem",
+            textAlign: "center",
+            color: "white",
+            backgroundImage:
+              "linear-gradient(to bottom, #060910, #162125, #060910)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>Disconnect Wallet</span>
+            <Icon
+              name="close"
+              style={{ cursor: "pointer" }}
+              onClick={handleCloseDisconnectModal}
+            />
+          </div>
+        </Modal.Header>
+
+        <Modal.Content
+          style={{
+            backgroundColor: "#6f8586",
+          }}
+        >
+          <Modal.Description style={{ color: "white", textAlign: "left" }}>
+            <p style={{ fontSize: "1rem" }}>
+              Disconnecting wallet will reload the page and all unprocessed
+              entries will be lost. Proceed?
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                alignItems: "end",
+              }}
+            >
+              <Modal.Actions>
+                <Button
+                  className="custom-button"
+                  onClick={() => handleCloseDisconnectModal()}
+                >
+                  No. Take me Back
+                </Button>
+                <Button
+                  className="disconnect-button"
+                  content="Yes. Disconnect"
+                  labelPosition="right"
+                  icon="checkmark"
+                  onClick={() => handleWalletDisconnect()}
+                />
+              </Modal.Actions>
             </div>
           </Modal.Description>
         </Modal.Content>
