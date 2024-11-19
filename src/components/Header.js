@@ -95,7 +95,7 @@ function Header({ weblocation }) {
         </Grid.Row>
 
         <Grid.Row only="tablet">
-          <Grid.Column width={5} floated="left">
+          <Grid.Column width={6} floated="left">
             <Image
               src={logo}
               size="small"
@@ -106,7 +106,7 @@ function Header({ weblocation }) {
 
           <Grid.Column width={7} floated="right" verticalAlign="middle">
             <Grid>
-              <Grid.Column width={5} floated="right" verticalAlign="middle">
+              <Grid.Column width={6} floated="right" verticalAlign="middle">
                 <Grid>
                   <Grid.Column width={8}>
                     <div onClick={() => handleIconClick("x")}>
