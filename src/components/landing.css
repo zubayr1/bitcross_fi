@@ -26,14 +26,22 @@
 }
 
 /* For tablet */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .heading {
     font-size: 4rem;
   }
 }
 
-/* For computer */
-@media only screen and (min-width: 992px) {
+/* For smaller computers */
+@media only screen and (min-width: 992px) and (max-width: 1299px) {
+  .heading {
+    font-size: 4rem;
+    text-align: left;
+  }
+}
+
+/* For larger computer */
+@media only screen and (min-width: 1300px) {
   .heading {
     font-size: 5rem;
     text-align: left;
@@ -45,7 +53,7 @@
   font-family: 'Railway', sans-serif;
   font-weight: 500;
   /* Medium */
-  color: white;
+  color: #f9faf2;
   margin: 0;
   text-align: center;
 }
@@ -57,14 +65,22 @@
 }
 
 /* For tablet */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .subheading {
     font-size: 1.6rem;
   }
 }
 
-/* For computer */
-@media only screen and (min-width: 992px) {
+/* For smaller computers */
+@media only screen and (min-width: 992px) and (max-width: 1299px) {
+  .subheading {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+}
+
+/* For larger computer */
+@media only screen and (min-width: 1300px) {
   .subheading {
     font-size: 1.6rem;
     text-align: left;
