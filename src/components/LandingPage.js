@@ -65,19 +65,18 @@ function LandingPage() {
 
           <Grid centered>
             <Grid.Row centered>
-              <Grid.Column width={12} only="mobile">
+              <Grid.Column width={12} only="mobile" style={{ marginTop: "6%" }}>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     flexWrap: "wrap",
-                    marginTop: "5%",
                   }}
                 >
                   <div
                     onClick={() => handleIconClick("x")}
-                    style={{ margin: "0 10px", cursor: "pointer" }}
+                    style={{ margin: "0 16px", cursor: "pointer" }}
                   >
                     <Image src={twitter} size="mini" />
                   </div>
@@ -85,7 +84,7 @@ function LandingPage() {
                   <div
                     onClick={() => handleIconClick("gitbook")}
                     style={{
-                      margin: "0 10px",
+                      margin: "0 16px",
                       cursor: "pointer",
                       filter: "invert(95%)",
                     }}
@@ -96,7 +95,7 @@ function LandingPage() {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row centered style={{ marginBottom: "5%" }}>
+            <Grid.Row centered style={{ marginBottom: "5%", marginTop: "-5%" }}>
               <Grid.Column width={14} only="mobile tablet">
                 <Button
                   onClick={() => handleButtonClick()}
