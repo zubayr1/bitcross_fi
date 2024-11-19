@@ -145,7 +145,7 @@ function Header({ weblocation }) {
         </Grid.Row>
 
         <Grid.Row only="mobile">
-          <Grid.Column width={4} floated="left" style={{ marginTop: "4%" }}>
+          <Grid.Column width={5} floated="left" style={{ marginTop: "4%" }}>
             <Image
               src={logo}
               size="small"
