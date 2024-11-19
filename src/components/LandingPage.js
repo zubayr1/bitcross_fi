@@ -96,7 +96,7 @@ function LandingPage() {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row centered style={{ marginBottom: "2%" }}>
+            <Grid.Row centered style={{ marginBottom: "5%" }}>
               <Grid.Column width={14} only="mobile tablet">
                 <Button
                   onClick={() => handleButtonClick()}
