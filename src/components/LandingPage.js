@@ -66,29 +66,33 @@ function LandingPage() {
           <Grid centered>
             <Grid.Row centered>
               <Grid.Column width={12} only="mobile">
-                <Grid centered columns={3} style={{ marginTop: "5%" }}>
-                  <Grid.Row centered>
-                    <Grid.Column width={3}>
-                      <div onClick={() => handleIconClick("x")}>
-                        <Image
-                          src={twitter}
-                          size="mini"
-                          style={{ cursor: "pointer" }}
-                        />
-                      </div>
-                    </Grid.Column>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    marginTop: "5%",
+                  }}
+                >
+                  <div
+                    onClick={() => handleIconClick("x")}
+                    style={{ margin: "0 10px", cursor: "pointer" }}
+                  >
+                    <Image src={twitter} size="mini" />
+                  </div>
 
-                    <Grid.Column width={3}>
-                      <div onClick={() => handleIconClick("gitbook")}>
-                        <Image
-                          src={gitbook}
-                          size="mini"
-                          style={{ cursor: "pointer", filter: "invert(95%)" }}
-                        />
-                      </div>
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
+                  <div
+                    onClick={() => handleIconClick("gitbook")}
+                    style={{
+                      margin: "0 10px",
+                      cursor: "pointer",
+                      filter: "invert(95%)",
+                    }}
+                  >
+                    <Image src={gitbook} size="mini" />
+                  </div>
+                </div>
               </Grid.Column>
             </Grid.Row>
 
