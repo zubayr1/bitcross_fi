@@ -95,44 +95,52 @@ function Header({ weblocation }) {
         </Grid.Row>
 
         <Grid.Row only="tablet">
-          <Grid.Column width={4} floated="left">
+          <Grid.Column width={5} floated="left">
             <Image
               src={logo}
               size="small"
-              style={{ width: "50%", height: "auto", cursor: "pointer" }}
+              style={{ width: "35%", height: "auto", cursor: "pointer" }}
+              onClick={handleLogoClick}
             />
           </Grid.Column>
 
-          <Grid.Column width={5} floated="right">
+          <Grid.Column width={7} floated="right" verticalAlign="middle">
             <Grid>
-              <Grid.Column width={6}>
-                <div onClick={() => handleIconClick("x")}>
-                  <Image
-                    src={twitter}
-                    size="mini"
-                    style={{ cursor: "pointer" }}
-                    onClick={handleLogoClick}
-                  />
-                </div>
+              <Grid.Column width={5} floated="right" verticalAlign="middle">
+                <Grid>
+                  <Grid.Column width={8}>
+                    <div onClick={() => handleIconClick("x")}>
+                      <Image
+                        src={twitter}
+                        size="mini"
+                        style={{ cursor: "pointer" }}
+                      />
+                    </div>
+                  </Grid.Column>
+
+                  <Grid.Column width={8}>
+                    <div onClick={() => handleIconClick("gitbook")}>
+                      <Image
+                        src={gitbook}
+                        size="mini"
+                        style={{ cursor: "pointer", filter: "invert(95%)" }}
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid>
               </Grid.Column>
 
-              <Grid.Column width={6}>
-                <div onClick={() => handleIconClick("gitbook")}>
-                  <Image
-                    src={gitbook}
-                    size="mini"
-                    style={{ cursor: "pointer", filter: "invert(95%)" }}
-                  />
-                </div>
+              <Grid.Column width={8} floated="right" verticalAlign="middle">
+                <Button
+                  onClick={handleButtonClick}
+                  className="custom-button"
+                  style={{ padding: "5%" }}
+                >
+                  Launch App
+                  <Image src={launch_icon} avatar />
+                </Button>
               </Grid.Column>
             </Grid>
-          </Grid.Column>
-
-          <Grid.Column width={6} floated="right" verticalAlign="middle">
-            <Button onClick={handleButtonClick} className="custom-button">
-              Launch App
-              <Image src={launch_icon} avatar />
-            </Button>
           </Grid.Column>
         </Grid.Row>
 
