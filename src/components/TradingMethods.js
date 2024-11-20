@@ -63,17 +63,25 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "pool" ? "1px solid grey" : "none",
-                    padding: method === "pool" ? "10px" : "0",
+                    padding: "10px", // Consistent padding
                     borderRadius: "5px",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   onClick={() => handleSelectType("pool")}
                 >
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20%",
-                      margin: "4%",
+                      padding: "20px", // Consistent padding
+                      margin: "2%",
                       borderRadius: "8px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "80px", // Fixed width
+                      height: "80px", // Fixed height
                     }}
                   >
                     <Image src={pool} size="small" />
@@ -105,16 +113,25 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "stake" ? "1px solid grey" : "none",
-                    padding: method === "stake" ? "10px" : "0",
+                    padding: "10px", // Consistent padding
                     borderRadius: "5px",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   onClick={() => handleSelectType("stake")}
                 >
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20%",
+                      padding: "20px", // Consistent padding
+                      margin: "2%",
                       borderRadius: "8px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "80px", // Fixed width
+                      height: "80px", // Fixed height
                     }}
                   >
                     <Image src={stake} size="small" />
@@ -235,7 +252,16 @@ function TradingMethods() {
                   }}
                   onClick={() => handleSelectType("swap")}
                 >
-                  <Image src={swap_order} size="small" />
+                  <div
+                    style={{
+                      backgroundColor: "#19292f",
+                      padding: "20%",
+                      margin: "2%",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <Image src={swap_order} size="small" />
+                  </div>
                 </div>
               </Grid.Column>
               <Grid.Column width={8} verticalAlign="middle">
@@ -268,7 +294,16 @@ function TradingMethods() {
                   }}
                   onClick={() => handleSelectType("lo")}
                 >
-                  <Image src={limited_order} size="small" />
+                  <div
+                    style={{
+                      backgroundColor: "#19292f",
+                      padding: "20%",
+                      margin: "2%",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <Image src={limited_order} size="small" />
+                  </div>
                 </div>
               </Grid.Column>
               <Grid.Column width={8} verticalAlign="middle">
@@ -301,7 +336,16 @@ function TradingMethods() {
                   }}
                   onClick={() => handleSelectType("dca")}
                 >
-                  <Image src={dca_order} size="small" />
+                  <div
+                    style={{
+                      backgroundColor: "#19292f",
+                      padding: "20%",
+                      margin: "2%",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <Image src={dca_order} size="small" />
+                  </div>
                 </div>
               </Grid.Column>
               <Grid.Column width={8} verticalAlign="middle">
