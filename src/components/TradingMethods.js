@@ -63,7 +63,7 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "pool" ? "1px solid grey" : "none",
-                    padding: "10px", // Consistent padding
+                    padding: ".5rem",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -74,14 +74,14 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20px", // Consistent padding
+                      padding: ".7rem",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "80px", // Fixed width
-                      height: "80px", // Fixed height
+                      width: "10em",
+                      height: "4em",
                     }}
                   >
                     <Image src={pool} size="small" />
@@ -113,7 +113,7 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "stake" ? "1px solid grey" : "none",
-                    padding: "10px", // Consistent padding
+                    padding: ".5rem",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -124,14 +124,14 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20px", // Consistent padding
+                      padding: ".7rem",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "80px", // Fixed width
-                      height: "80px", // Fixed height
+                      width: "10em",
+                      height: "4em",
                     }}
                   >
                     <Image src={stake} size="small" />
@@ -152,7 +152,10 @@ function TradingMethods() {
           <Grid.Column
             verticalAlign="middle"
             width={5}
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             <Grid
               className="methodsDiv"
@@ -161,6 +164,7 @@ function TradingMethods() {
                 borderBottom: method === "pool" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "pool" ? "#0e1d24" : "",
                 width: "100%",
+                height: "8em",
               }}
             >
               <Grid.Row>
@@ -168,20 +172,23 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "pool" ? "1px solid grey" : "none",
-                    // padding: method === 0 ? "10px" : "0",
                     borderRadius: "5px",
+                    padding: ".2rem",
                   }}
+                  onClick={() => handleSelectType("pool")}
                 >
                   <Image
                     src={pool}
                     size="mini"
-                    onClick={() => handleSelectType("pool")}
+                    style={{
+                      width: "4em",
+                      height: "4em",
+                    }}
                   />
-                </div>
-              </Grid.Row>
-              <Grid.Row>
-                <div className="new-header-text">
-                  <p>Pool</p>
+
+                  <div className="new-header-text">
+                    <p>Pool</p>
+                  </div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -202,24 +209,31 @@ function TradingMethods() {
                 borderBottom: method === "stake" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "stake" ? "#0e1d24" : "",
                 width: "100%",
+                height: "8em",
               }}
             >
-              <Grid.Row width={5}>
+              <Grid.Row>
                 <div
                   style={{
                     cursor: "pointer",
                     border: method === "stake" ? "1px solid grey" : "none",
-                    // padding: method === 1 ? "10px" : "0",
                     borderRadius: "5px",
+                    padding: ".2rem",
                   }}
                   onClick={() => handleSelectType("stake")}
                 >
-                  <Image src={stake} size="mini" />
-                </div>
-              </Grid.Row>
-              <Grid.Row width={8}>
-                <div className="new-header-text">
-                  <p>Stake</p>
+                  <Image
+                    src={stake}
+                    size="mini"
+                    style={{
+                      width: "4em",
+                      height: "4em",
+                    }}
+                  />
+
+                  <div className="new-header-text">
+                    <p>Stake</p>
+                  </div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -247,8 +261,11 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "swap" ? "1px solid grey" : "none",
-                    padding: method === "swap" ? "10px" : "0",
+                    padding: ".5rem",
                     borderRadius: "5px",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   onClick={() => handleSelectType("swap")}
                 >
@@ -258,6 +275,11 @@ function TradingMethods() {
                       padding: "20%",
                       margin: "2%",
                       borderRadius: "8px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "10em",
+                      height: "4em",
                     }}
                   >
                     <Image src={swap_order} size="small" />
@@ -289,8 +311,11 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "lo" ? "1px solid grey" : "none",
-                    padding: method === "lo" ? "10px" : "0",
+                    padding: ".5rem",
                     borderRadius: "5px",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   onClick={() => handleSelectType("lo")}
                 >
@@ -300,6 +325,11 @@ function TradingMethods() {
                       padding: "20%",
                       margin: "2%",
                       borderRadius: "8px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "10em",
+                      height: "4em",
                     }}
                   >
                     <Image src={limited_order} size="small" />
@@ -331,8 +361,11 @@ function TradingMethods() {
                   style={{
                     cursor: "pointer",
                     border: method === "dca" ? "1px solid grey" : "none",
-                    padding: method === "dca" ? "10px" : "0",
+                    padding: ".5rem",
                     borderRadius: "5px",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   onClick={() => handleSelectType("dca")}
                 >
@@ -342,6 +375,11 @@ function TradingMethods() {
                       padding: "20%",
                       margin: "2%",
                       borderRadius: "8px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "10em",
+                      height: "4em",
                     }}
                   >
                     <Image src={dca_order} size="small" />
@@ -371,6 +409,7 @@ function TradingMethods() {
                 borderBottom: method === "swap" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "swap" ? "#0e1d24" : "",
                 width: "100%",
+                height: "8em",
               }}
             >
               <Grid.Row>
@@ -380,18 +419,22 @@ function TradingMethods() {
                     border: method === "swap" ? "1px solid grey" : "none",
                     // padding: method === 0 ? "10px" : "0",
                     borderRadius: "5px",
+                    padding: ".2rem",
                   }}
+                  onClick={() => handleSelectType("swap")}
                 >
                   <Image
                     src={swap_order}
                     size="mini"
-                    onClick={() => handleSelectType("swap")}
+                    style={{
+                      width: "4em",
+                      height: "4em",
+                    }}
                   />
-                </div>
-              </Grid.Row>
-              <Grid.Row>
-                <div className="new-header-text">
-                  <p>Swap</p>
+
+                  <div className="new-header-text">
+                    <p>Swap</p>
+                  </div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -402,7 +445,6 @@ function TradingMethods() {
             style={{
               display: "flex",
               justifyContent: "center",
-              paddingTop: "2px",
             }}
           >
             <Grid
@@ -412,6 +454,7 @@ function TradingMethods() {
                 borderBottom: method === "lo" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "lo" ? "#0e1d24" : "",
                 width: "100%",
+                height: "8em",
               }}
             >
               <Grid.Row width={5}>
@@ -421,17 +464,26 @@ function TradingMethods() {
                     border: method === "lo" ? "1px solid grey" : "none",
                     // padding: method === 1 ? "10px" : "0",
                     borderRadius: "5px",
+                    padding: ".2rem",
                   }}
                   onClick={() => handleSelectType("lo")}
                 >
-                  <Image src={limited_order} size="mini" />
+                  <Image
+                    centered
+                    src={limited_order}
+                    size="mini"
+                    style={{
+                      width: "4em",
+                      height: "4em",
+                    }}
+                  />
+
+                  <div className="new-header-text">
+                    <p>Limit Order</p>
+                  </div>
                 </div>
               </Grid.Row>
-              <Grid.Row width={8}>
-                <div className="new-header-text">
-                  <p>Limit Order</p>
-                </div>
-              </Grid.Row>
+              <Grid.Row width={8}></Grid.Row>
             </Grid>
           </Grid.Column>
 
@@ -446,6 +498,7 @@ function TradingMethods() {
                 borderBottom: method === "dca" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "dca" ? "#0e1d24" : "",
                 width: "100%",
+                height: "8em",
               }}
             >
               <Grid.Row width={5}>
@@ -455,17 +508,25 @@ function TradingMethods() {
                     border: method === "dca" ? "1px solid grey" : "none",
                     // padding: method === 2 ? "10px" : "0",
                     borderRadius: "5px",
+                    padding: ".2rem",
                   }}
                   onClick={() => handleSelectType("dca")}
                 >
-                  <Image src={dca_order} size="mini" />
+                  <Image
+                    src={dca_order}
+                    size="mini"
+                    style={{
+                      width: "4em",
+                      height: "4em",
+                    }}
+                  />
+
+                  <div className="new-header-text">
+                    <p>DCA</p>
+                  </div>
                 </div>
               </Grid.Row>
-              <Grid.Row width={8}>
-                <div className="new-header-text">
-                  <p>DCA</p>
-                </div>
-              </Grid.Row>
+              <Grid.Row width={8}></Grid.Row>
             </Grid>
           </Grid.Column>
         </Grid.Row>
