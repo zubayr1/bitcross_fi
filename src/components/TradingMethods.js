@@ -54,14 +54,15 @@ function TradingMethods() {
             <Grid
               className="methodsDiv"
               style={{
+                cursor: "pointer",
                 borderBottom: method === "pool" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "pool" ? "#0e1d24" : "",
               }}
+              onClick={() => handleSelectType("pool")}
             >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "pool" ? "1px solid grey" : "none",
                     padding: ".5rem",
                     borderRadius: "5px",
@@ -69,7 +70,6 @@ function TradingMethods() {
                     display: "flex",
                     alignItems: "center",
                   }}
-                  onClick={() => handleSelectType("pool")}
                 >
                   <div
                     style={{
@@ -104,14 +104,15 @@ function TradingMethods() {
             <Grid
               className="methodsDiv"
               style={{
+                cursor: "pointer",
                 borderBottom: method === "stake" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "stake" ? "#0e1d24" : "",
               }}
+              onClick={() => handleSelectType("stake")}
             >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "stake" ? "1px solid grey" : "none",
                     padding: ".5rem",
                     borderRadius: "5px",
@@ -119,7 +120,6 @@ function TradingMethods() {
                     display: "flex",
                     alignItems: "center",
                   }}
-                  onClick={() => handleSelectType("stake")}
                 >
                   <div
                     style={{
@@ -165,17 +165,17 @@ function TradingMethods() {
                 backgroundColor: method === "pool" ? "#0e1d24" : "",
                 width: "100%",
                 height: "8em",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("pool")}
             >
               <Grid.Row>
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "pool" ? "1px solid grey" : "none",
                     borderRadius: "5px",
                     padding: ".2rem",
                   }}
-                  onClick={() => handleSelectType("pool")}
                 >
                   <Image
                     src={pool}
@@ -210,17 +210,17 @@ function TradingMethods() {
                 backgroundColor: method === "stake" ? "#0e1d24" : "",
                 width: "100%",
                 height: "8em",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("stake")}
             >
               <Grid.Row>
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "stake" ? "1px solid grey" : "none",
                     borderRadius: "5px",
                     padding: ".2rem",
                   }}
-                  onClick={() => handleSelectType("stake")}
                 >
                   <Image
                     src={stake}
@@ -254,12 +254,13 @@ function TradingMethods() {
               style={{
                 borderBottom: method === "swap" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "swap" ? "#0e1d24" : "",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("swap")}
             >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "swap" ? "1px solid grey" : "none",
                     padding: ".5rem",
                     borderRadius: "5px",
@@ -267,7 +268,6 @@ function TradingMethods() {
                     display: "flex",
                     alignItems: "center",
                   }}
-                  onClick={() => handleSelectType("swap")}
                 >
                   <div
                     style={{
@@ -304,12 +304,13 @@ function TradingMethods() {
               style={{
                 borderBottom: method === "lo" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "lo" ? "#0e1d24" : "",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("lo")}
             >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "lo" ? "1px solid grey" : "none",
                     padding: ".5rem",
                     borderRadius: "5px",
@@ -317,7 +318,6 @@ function TradingMethods() {
                     display: "flex",
                     alignItems: "center",
                   }}
-                  onClick={() => handleSelectType("lo")}
                 >
                   <div
                     style={{
@@ -354,12 +354,13 @@ function TradingMethods() {
               style={{
                 borderBottom: method === "dca" ? "2px solid #6f8586" : "none",
                 backgroundColor: method === "dca" ? "#0e1d24" : "",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("dca")}
             >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "dca" ? "1px solid grey" : "none",
                     padding: ".5rem",
                     borderRadius: "5px",
@@ -367,7 +368,6 @@ function TradingMethods() {
                     display: "flex",
                     alignItems: "center",
                   }}
-                  onClick={() => handleSelectType("dca")}
                 >
                   <div
                     style={{
@@ -410,18 +410,18 @@ function TradingMethods() {
                 backgroundColor: method === "swap" ? "#0e1d24" : "",
                 width: "100%",
                 height: "8em",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("swap")}
             >
               <Grid.Row>
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "swap" ? "1px solid grey" : "none",
                     // padding: method === 0 ? "10px" : "0",
                     borderRadius: "5px",
                     padding: ".2rem",
                   }}
-                  onClick={() => handleSelectType("swap")}
                 >
                   <Image
                     src={swap_order}
@@ -455,18 +455,18 @@ function TradingMethods() {
                 backgroundColor: method === "lo" ? "#0e1d24" : "",
                 width: "100%",
                 height: "8em",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("lo")}
             >
               <Grid.Row width={5}>
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "lo" ? "1px solid grey" : "none",
                     // padding: method === 1 ? "10px" : "0",
                     borderRadius: "5px",
                     padding: ".2rem",
                   }}
-                  onClick={() => handleSelectType("lo")}
                 >
                   <Image
                     centered
@@ -499,18 +499,18 @@ function TradingMethods() {
                 backgroundColor: method === "dca" ? "#0e1d24" : "",
                 width: "100%",
                 height: "8em",
+                cursor: "pointer",
               }}
+              onClick={() => handleSelectType("dca")}
             >
               <Grid.Row width={5}>
                 <div
                   style={{
-                    cursor: "pointer",
                     border: method === "dca" ? "1px solid grey" : "none",
                     // padding: method === 2 ? "10px" : "0",
                     borderRadius: "5px",
                     padding: ".2rem",
                   }}
-                  onClick={() => handleSelectType("dca")}
                 >
                   <Image
                     src={dca_order}
