@@ -25,9 +25,21 @@ function TradingMethods() {
         setMethod("swap");
         setSelectedType("swap");
       }
-    } else {
+    } else if (
+      selectedType === "swap" ||
+      selectedType === "lo" ||
+      selectedType === "dca"
+    ) {
       if (selectedOperationType === 1) {
         setMethod(selectedType);
+      } else {
+        setMethod("pool");
+        setSelectedType("pool");
+      }
+    } else {
+      if (selectedOperationType === 2) {
+        setMethod("perps");
+        setSelectedType("perps");
       } else {
         setMethod("pool");
         setSelectedType("pool");
@@ -249,7 +261,7 @@ function TradingMethods() {
         </Grid.Row>
       </Grid>
     );
-  } else {
+  } else if (selectedOperationType === 1) {
     layout = (
       <Grid style={{ width: "100%" }}>
         <Grid.Row only="computer tablet" style={{ justifyContent: "center" }}>
@@ -552,6 +564,8 @@ function TradingMethods() {
         </Grid.Row>
       </Grid>
     );
+  } else {
+    layout = <div></div>;
   }
 
   return (

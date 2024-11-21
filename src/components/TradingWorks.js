@@ -13,6 +13,7 @@ import { Grid } from "semantic-ui-react";
 import axios from "axios";
 
 import { tokenOptions, expiryOptions, dcaOptions } from "./options";
+import Perps from "./Perps";
 
 function TradingWorks({ account = null }) {
   const { selectedOperationType, selectedType, setSelectedType } = useModal();
@@ -52,9 +53,21 @@ function TradingWorks({ account = null }) {
         setMethod("swap");
         setSelectedType("swap");
       }
-    } else {
+    } else if (
+      selectedType === "swap" ||
+      selectedType === "lo" ||
+      selectedType === "dca"
+    ) {
       if (selectedOperationType === 1) {
         setMethod(selectedType);
+      } else {
+        setMethod("pool");
+        setSelectedType("pool");
+      }
+    } else {
+      if (selectedOperationType === 2) {
+        setMethod("perps");
+        setSelectedType("perps");
       } else {
         setMethod("pool");
         setSelectedType("pool");
@@ -336,10 +349,16 @@ function TradingWorks({ account = null }) {
         <Pool account={account} tokenOptions={tokenOptions} />
       </div>
     );
-  } else {
+  } else if (method === "stake") {
     layout = (
       <div>
         <Stake account={account} tokenOptions={tokenOptions} />
+      </div>
+    );
+  } else {
+    layout = (
+      <div>
+        <Perps />
       </div>
     );
   }

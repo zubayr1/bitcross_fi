@@ -18,10 +18,12 @@ import "./buttonstyle.css";
 function Header({ weblocation }) {
   const navigate = useNavigate();
 
-  const { selectedOperationType, setSelectedOperationType } = useModal();
+  const { setSelectedType, selectedOperationType, setSelectedOperationType } =
+    useModal();
 
   const handleMethodChange = (method) => {
     setSelectedOperationType(method);
+    if (method === 2) setSelectedType("perps");
   };
 
   const handleButtonClick = () => {
@@ -210,7 +212,19 @@ function Header({ weblocation }) {
                 </Grid.Column>
 
                 <Grid.Column width={4} textAlign="center">
-                  <div className="type-container-disabled">
+                  <div
+                    className="type-container"
+                    style={{
+                      backgroundImage:
+                        selectedOperationType === 2
+                          ? "linear-gradient(to right, #283a41, #11192b)"
+                          : "none",
+
+                      fontWeight:
+                        selectedOperationType === 2 ? "bold" : "normal",
+                    }}
+                    onClick={() => handleMethodChange(2)}
+                  >
                     <p style={{ color: "white" }}>Perps</p>
                   </div>
                 </Grid.Column>
@@ -270,7 +284,18 @@ function Header({ weblocation }) {
                 </Grid.Column>
 
                 <Grid.Column width={4} textAlign="center">
-                  <div className="type-container-disabled">
+                  <div
+                    className="type-container"
+                    style={{
+                      backgroundImage:
+                        selectedOperationType === 2
+                          ? "linear-gradient(to right, #283a41, #11192b)"
+                          : "none",
+                      fontWeight:
+                        selectedOperationType === 2 ? "bold" : "normal",
+                    }}
+                    onClick={() => handleMethodChange(2)}
+                  >
                     <p style={{ color: "white" }}>Perps</p>
                   </div>
                 </Grid.Column>
@@ -328,7 +353,13 @@ function Header({ weblocation }) {
                   <Icon name="fire" />
                   Trade
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item
+                  style={{
+                    backgroundColor:
+                      selectedOperationType === 2 ? "#6f8586" : "",
+                  }}
+                  onClick={() => handleMethodChange(2)}
+                >
                   <Icon name="settings" />
                   Perps
                 </Dropdown.Item>
