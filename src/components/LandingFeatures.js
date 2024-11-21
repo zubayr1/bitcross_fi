@@ -15,7 +15,11 @@ function LandingFeatures() {
   const navigate = useNavigate();
 
   const handleSelectType = (type) => {
-    setSelectedOperationType(1);
+    if (type === "perps") {
+      setSelectedOperationType(2);
+    } else {
+      setSelectedOperationType(1);
+    }
     setSelectedType(type);
     sessionStorage.setItem("selectedType", type);
     navigate("/trade");
@@ -82,7 +86,7 @@ function LandingFeatures() {
             <div
               style={{ cursor: "pointer" }}
               className="feature-column"
-              onClick={() => handleSelectType("swap")}
+              onClick={() => handleSelectType("perps")}
             >
               <div className="feature-container">
                 <Grid className="feature-content">
@@ -168,7 +172,7 @@ function LandingFeatures() {
               <div
                 style={{ cursor: "pointer" }}
                 className="feature-container"
-                onClick={() => handleSelectType("swap")}
+                onClick={() => handleSelectType("perps")}
               >
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
@@ -246,7 +250,7 @@ function LandingFeatures() {
               <div
                 style={{ cursor: "pointer" }}
                 className="feature-container"
-                onClick={() => handleSelectType("swap")}
+                onClick={() => handleSelectType("perps")}
               >
                 <Grid>
                   <Grid.Row centered>
