@@ -1,18 +1,36 @@
 import React from "react";
 import { Grid, Image } from "semantic-ui-react";
 
+import { useModal } from "./ModalContext";
+import { useNavigate } from "react-router-dom";
+
 import atomic_swap from "../assets/atomic_swap.svg";
 import dca from "../assets/dca.svg";
 import perps from "../assets/perps.svg";
 import "./landingfeatures.css";
 
 function LandingFeatures() {
+  const { setSelectedOperationType, setSelectedType } = useModal();
+
+  const navigate = useNavigate();
+
+  const handleSelectType = (type) => {
+    setSelectedOperationType(1);
+    setSelectedType(type);
+    sessionStorage.setItem("selectedType", type);
+    navigate("/trade");
+  };
+
   return (
     <div style={{ paddingTop: "5%" }}>
       <Grid centered>
         <Grid.Row only="computer">
           <div className="feature-wrapper">
-            <div className="feature-column">
+            <div
+              style={{ cursor: "pointer" }}
+              className="feature-column"
+              onClick={() => handleSelectType("swap")}
+            >
               <div className="feature-container">
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
@@ -36,7 +54,11 @@ function LandingFeatures() {
                 </Grid>
               </div>
             </div>
-            <div className="feature-column">
+            <div
+              style={{ cursor: "pointer" }}
+              className="feature-column"
+              onClick={() => handleSelectType("dca")}
+            >
               <div className="feature-container">
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
@@ -57,7 +79,11 @@ function LandingFeatures() {
                 </Grid>
               </div>
             </div>
-            <div className="feature-column">
+            <div
+              style={{ cursor: "pointer" }}
+              className="feature-column"
+              onClick={() => handleSelectType("swap")}
+            >
               <div className="feature-container">
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
@@ -84,7 +110,11 @@ function LandingFeatures() {
         <Grid.Row only="tablet">
           <Grid centered>
             <Grid.Row>
-              <div className="feature-container">
+              <div
+                style={{ cursor: "pointer" }}
+                className="feature-container"
+                onClick={() => handleSelectType("swap")}
+              >
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
                     <Image
@@ -109,7 +139,11 @@ function LandingFeatures() {
             </Grid.Row>
 
             <Grid.Row>
-              <div className="feature-container">
+              <div
+                style={{ cursor: "pointer" }}
+                className="feature-container"
+                onClick={() => handleSelectType("dca")}
+              >
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
                     <Image src={dca} style={{ verticalAlign: "middle" }} />
@@ -131,7 +165,11 @@ function LandingFeatures() {
             </Grid.Row>
 
             <Grid.Row>
-              <div className="feature-container">
+              <div
+                style={{ cursor: "pointer" }}
+                className="feature-container"
+                onClick={() => handleSelectType("swap")}
+              >
                 <Grid className="feature-content">
                   <Grid.Column width={4} verticalAlign="middle">
                     <Image src={perps} style={{ verticalAlign: "middle" }} />
@@ -160,7 +198,11 @@ function LandingFeatures() {
         >
           <Grid centered>
             <Grid.Row>
-              <div className="feature-container">
+              <div
+                style={{ cursor: "pointer" }}
+                className="feature-container"
+                onClick={() => handleSelectType("swap")}
+              >
                 <Grid>
                   <Grid.Row centered>
                     <Image
@@ -180,7 +222,11 @@ function LandingFeatures() {
               </div>
             </Grid.Row>
             <Grid.Row>
-              <div className="feature-container">
+              <div
+                style={{ cursor: "pointer" }}
+                className="feature-container"
+                onClick={() => handleSelectType("dca")}
+              >
                 <Grid>
                   <Grid.Row centered>
                     <Image src={dca} style={{ verticalAlign: "middle" }} />
@@ -197,7 +243,11 @@ function LandingFeatures() {
               </div>
             </Grid.Row>
             <Grid.Row>
-              <div className="feature-container">
+              <div
+                style={{ cursor: "pointer" }}
+                className="feature-container"
+                onClick={() => handleSelectType("swap")}
+              >
                 <Grid>
                   <Grid.Row centered>
                     <Image src={perps} style={{ verticalAlign: "middle" }} />
