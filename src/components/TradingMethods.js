@@ -64,7 +64,7 @@ function TradingMethods() {
                 <div
                   style={{
                     border: method === "pool" ? "1px solid grey" : "none",
-                    padding: ".5rem",
+                    padding: "2px",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -74,17 +74,21 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: ".7rem",
+                      padding: "6px",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "10em",
-                      height: "4em",
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
-                    <Image src={pool} size="small" />
+                    <Image
+                      src={pool}
+                      size="small"
+                      style={{ width: "120px", height: "30px" }}
+                    />
                   </div>
                 </div>
               </Grid.Column>
@@ -114,7 +118,7 @@ function TradingMethods() {
                 <div
                   style={{
                     border: method === "stake" ? "1px solid grey" : "none",
-                    padding: ".5rem",
+                    padding: "2px",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -124,17 +128,21 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: ".7rem",
+                      padding: "6px",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "10em",
-                      height: "4em",
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
-                    <Image src={stake} size="small" />
+                    <Image
+                      src={stake}
+                      size="small"
+                      style={{ width: "120px", height: "30px" }}
+                    />
                   </div>
                 </div>
               </Grid.Column>
@@ -262,7 +270,7 @@ function TradingMethods() {
                 <div
                   style={{
                     border: method === "swap" ? "1px solid grey" : "none",
-                    padding: ".5rem",
+                    padding: "2px",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -272,17 +280,21 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20%",
+                      padding: "6px",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "10em",
-                      height: "4em",
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
-                    <Image src={swap_order} size="small" />
+                    <Image
+                      src={swap_order}
+                      size="small"
+                      style={{ width: "120px", height: "30px" }}
+                    />
                   </div>
                 </div>
               </Grid.Column>
@@ -312,7 +324,7 @@ function TradingMethods() {
                 <div
                   style={{
                     border: method === "lo" ? "1px solid grey" : "none",
-                    padding: ".5rem",
+                    padding: "2px",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -322,17 +334,21 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20%",
+                      padding: "6px",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "10em",
-                      height: "4em",
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
-                    <Image src={limited_order} size="small" />
+                    <Image
+                      src={limited_order}
+                      size="small"
+                      style={{ width: "120px", height: "30px" }}
+                    />
                   </div>
                 </div>
               </Grid.Column>
@@ -362,7 +378,7 @@ function TradingMethods() {
                 <div
                   style={{
                     border: method === "dca" ? "1px solid grey" : "none",
-                    padding: ".5rem",
+                    padding: "2px",
                     borderRadius: "5px",
                     height: "100%",
                     display: "flex",
@@ -372,17 +388,21 @@ function TradingMethods() {
                   <div
                     style={{
                       backgroundColor: "#19292f",
-                      padding: "20%",
+                      padding: "6px",
                       margin: "2%",
                       borderRadius: "8px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "10em",
-                      height: "4em",
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
-                    <Image src={dca_order} size="small" />
+                    <Image
+                      src={dca_order}
+                      size="small"
+                      style={{ width: "120px", height: "30px" }}
+                    />
                   </div>
                 </div>
               </Grid.Column>
