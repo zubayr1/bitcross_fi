@@ -86,7 +86,7 @@ function Header({ weblocation }) {
                 </Grid>
               </Grid.Column>
 
-              <Grid.Column width={6} floated="right" verticalAlign="middle">
+              <Grid.Column width={6} verticalAlign="middle">
                 <Button onClick={handleButtonClick} className="custom-button">
                   Launch App
                   <Image src={launch_icon} avatar />
@@ -132,7 +132,7 @@ function Header({ weblocation }) {
                 </Grid>
               </Grid.Column>
 
-              <Grid.Column width={8} floated="right" verticalAlign="middle">
+              <Grid.Column width={8} verticalAlign="middle">
                 <Button
                   onClick={handleButtonClick}
                   className="custom-button"
@@ -243,6 +243,7 @@ function Header({ weblocation }) {
               src={logo}
               size="small"
               style={{ width: "50%", height: "auto", cursor: "pointer" }}
+              onClick={handleLogoClick}
             />
           </Grid.Column>
 
