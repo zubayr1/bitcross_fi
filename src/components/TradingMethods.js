@@ -565,7 +565,7 @@ function TradingMethods() {
       </Grid>
     );
   } else {
-    layout = <div></div>;
+    layout = <></>;
   }
 
   return (
