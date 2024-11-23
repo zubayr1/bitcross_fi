@@ -1,13 +1,6 @@
 import React from "react";
 
-import {
-  Grid,
-  Message,
-  Dropdown,
-  Input,
-  Button,
-  Radio,
-} from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 function Perps() {
   return (
