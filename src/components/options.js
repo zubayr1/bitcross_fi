@@ -48,8 +48,8 @@ export const liquidityOptions = [
   { key: "adjust", text: "Adjust Liquidity", value: "adjust" },
 ];
 
-export const stakeOptions = [
-  { key: "stake", text: "Stake Tokens", value: "stake" },
-  { key: "unstake", text: "Unstake Tokens", value: "unstake" },
+export const yieldOptions = [
+  { key: "yield", text: "yield Tokens", value: "yield" },
+  { key: "unyield", text: "Unyield Tokens", value: "unyield" },
   { key: "claim", text: "Claim Tokens", value: "claim" },
 ];

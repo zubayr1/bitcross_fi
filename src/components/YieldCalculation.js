@@ -4,12 +4,12 @@ import { useModal } from "./ModalContext";
 
 import { Grid, Message, Dropdown, Input, Button } from "semantic-ui-react";
 
-import { stakeOptions } from "./options";
+import { yieldOptions } from "./options";
 
 import "./methods.css";
 import "./buttonstyle.css";
 
-function Stake({ account = null, tokenOptions }) {
+function YieldCalculation({ account = null, tokenOptions }) {
   const { openModal } = useModal();
 
   const containerRef = useRef(null);
@@ -18,8 +18,8 @@ function Stake({ account = null, tokenOptions }) {
 
   const [selectedValue, setSelectedValue] = useState(tokenOptions[0].value);
 
-  const [selectedStakeValue, setSelectedStakeValue] = useState(
-    stakeOptions[0].value
+  const [selectedYieldValue, setSelectedYieldValue] = useState(
+    yieldOptions[0].value
   );
 
   useEffect(() => {
@@ -46,8 +46,8 @@ function Stake({ account = null, tokenOptions }) {
     setSelectedValue(value);
   };
 
-  const handleChangeStake = (e, { value }) => {
-    setSelectedStakeValue(value);
+  const handleChangeYield = (e, { value }) => {
+    setSelectedYieldValue(value);
   };
 
   let nested_layout = (
@@ -74,16 +74,16 @@ function Stake({ account = null, tokenOptions }) {
             marginBottom: 0,
           }}
         >
-          Stake Management
+          yield Management
         </p>
 
         <div style={{ textAlign: "right" }}>
           <Dropdown
             fluid
             selection
-            options={stakeOptions}
-            value={selectedStakeValue}
-            onChange={handleChangeStake}
+            options={yieldOptions}
+            value={selectedYieldValue}
+            onChange={handleChangeYield}
             style={{
               backgroundColor: "#0d303d",
               color: "#ede7df",
@@ -108,7 +108,7 @@ function Stake({ account = null, tokenOptions }) {
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <Dropdown
-            disabled={selectedStakeValue === "claim"}
+            disabled={selectedYieldValue === "claim"}
             fluid
             selection
             options={tokenOptions}
@@ -124,7 +124,7 @@ function Stake({ account = null, tokenOptions }) {
           />
 
           <Input
-            disabled={selectedStakeValue === "claim"}
+            disabled={selectedYieldValue === "claim"}
             className="inputContent"
             placeholder="0.00"
             size="mini"
@@ -200,7 +200,7 @@ function Stake({ account = null, tokenOptions }) {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Stake
+            yield
           </p>
         </Grid.Row>
         <Grid.Row only="tablet">
@@ -211,7 +211,7 @@ function Stake({ account = null, tokenOptions }) {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Stake
+            yield
           </p>
         </Grid.Row>
         <Grid.Row only="mobile">
@@ -222,7 +222,7 @@ function Stake({ account = null, tokenOptions }) {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Stake
+            yield
           </p>
         </Grid.Row>
 
@@ -242,4 +242,4 @@ function Stake({ account = null, tokenOptions }) {
   );
 }
 
-export default Stake;
+export default YieldCalculation;

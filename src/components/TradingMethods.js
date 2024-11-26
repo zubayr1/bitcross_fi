@@ -18,7 +18,7 @@ function TradingMethods() {
   const [method, setMethod] = useState("pool");
 
   useEffect(() => {
-    if (selectedType === "pool" || selectedType === "stake") {
+    if (selectedType === "pool" || selectedType === "yield") {
       if (selectedOperationType === 0) {
         setMethod(selectedType);
       } else {
@@ -121,15 +121,15 @@ function TradingMethods() {
               className="methodsDiv"
               style={{
                 cursor: "pointer",
-                borderBottom: method === "stake" ? "2px solid #6f8586" : "none",
-                backgroundColor: method === "stake" ? "#0e1d24" : "",
+                borderBottom: method === "yield" ? "2px solid #6f8586" : "none",
+                backgroundColor: method === "yield" ? "#0e1d24" : "",
               }}
-              onClick={() => handleSelectType("stake")}
+              onClick={() => handleSelectType("yield")}
             >
               <Grid.Column width={5} verticalAlign="middle">
                 <div
                   style={{
-                    border: method === "stake" ? "1px solid grey" : "none",
+                    border: method === "yield" ? "1px solid grey" : "none",
                     padding: "2px",
                     borderRadius: "5px",
                     height: "100%",
@@ -160,7 +160,7 @@ function TradingMethods() {
               </Grid.Column>
               <Grid.Column width={8} verticalAlign="middle">
                 <div className="new-header-text">
-                  <p>Stake</p>
+                  <p>yield</p>
                   <p>Earn rewards</p>
                 </div>
               </Grid.Column>
@@ -226,18 +226,18 @@ function TradingMethods() {
               className="methodsDiv"
               centered
               style={{
-                borderBottom: method === "stake" ? "2px solid #6f8586" : "none",
-                backgroundColor: method === "stake" ? "#0e1d24" : "",
+                borderBottom: method === "yield" ? "2px solid #6f8586" : "none",
+                backgroundColor: method === "yield" ? "#0e1d24" : "",
                 width: "100%",
                 height: "8em",
                 cursor: "pointer",
               }}
-              onClick={() => handleSelectType("stake")}
+              onClick={() => handleSelectType("yield")}
             >
               <Grid.Row>
                 <div
                   style={{
-                    border: method === "stake" ? "1px solid grey" : "none",
+                    border: method === "yield" ? "1px solid grey" : "none",
                     borderRadius: "5px",
                     padding: ".2rem",
                   }}
@@ -252,7 +252,7 @@ function TradingMethods() {
                   />
 
                   <div className="new-header-text">
-                    <p>Stake</p>
+                    <p>yield</p>
                   </div>
                 </div>
               </Grid.Row>

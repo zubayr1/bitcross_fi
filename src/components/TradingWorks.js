@@ -5,7 +5,7 @@ import Swap from "./Swap";
 import LimitOrder from "./LimitOrder";
 import DCA from "./DCA";
 import Pool from "./Pool";
-import Stake from "./Stake";
+import YieldCalculation from "./YieldCalculation";
 import TradingView from "./TradingView";
 
 import { Grid } from "semantic-ui-react";
@@ -46,7 +46,7 @@ function TradingWorks({ account = null }) {
   const [graphProcessingResult, setGraphProcessingResult] = useState(0);
 
   useEffect(() => {
-    if (selectedType === "pool" || selectedType === "stake") {
+    if (selectedType === "pool" || selectedType === "yield") {
       if (selectedOperationType === 0) {
         setMethod(selectedType);
       } else {
@@ -349,10 +349,10 @@ function TradingWorks({ account = null }) {
         <Pool account={account} tokenOptions={tokenOptions} />
       </div>
     );
-  } else if (method === "stake") {
+  } else if (method === "yield") {
     layout = (
       <div>
-        <Stake account={account} tokenOptions={tokenOptions} />
+        <YieldCalculation account={account} tokenOptions={tokenOptions} />
       </div>
     );
   } else {
