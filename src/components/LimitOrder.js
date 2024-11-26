@@ -11,13 +11,13 @@ import "./buttonstyle.css";
 function LimitOrder({
   account = null,
   tokenOptions,
-  expiryOptions,
+  limitOrderOptions,
   selectedValueSend,
   setSelectedValueSend,
   selectedValueReceive,
   setSelectedValueReceive,
-  selectedValueExpiry,
-  setSelectedValueExpiry,
+  selectedValueLimitOrder,
+  setSelectedValueLimitOrder,
 }) {
   const containerRef = useRef(null);
 
@@ -27,7 +27,7 @@ function LimitOrder({
   const [inputAmount, setInputAmount] = useState(0);
   const [outputAmount, setOutputAmount] = useState(0);
   const [rate, setRate] = useState(0);
-  useState(selectedValueExpiry);
+  useState(selectedValueLimitOrder);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -59,8 +59,8 @@ function LimitOrder({
     setSelectedValueReceive(value);
   };
 
-  const handleChangeExpiry = (e, { value }) => {
-    setSelectedValueExpiry(value);
+  const handleChangeLimitOrder = (e, { value }) => {
+    setSelectedValueLimitOrder(value);
   };
 
   const handleFlip = () => {
@@ -71,7 +71,7 @@ function LimitOrder({
   };
 
   const handleProceed = () => {
-    console.log(inputAmount, outputAmount, rate, selectedValueExpiry);
+    console.log(inputAmount, outputAmount, rate, selectedValueLimitOrder);
   };
 
   let nested_layout = (
@@ -319,14 +319,14 @@ function LimitOrder({
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Expiry:
+            Type:
           </p>
           <Dropdown
             fluid
             selection
-            options={expiryOptions}
-            value={selectedValueExpiry}
-            onChange={handleChangeExpiry}
+            options={limitOrderOptions}
+            value={selectedValueLimitOrder}
+            onChange={handleChangeLimitOrder}
             style={{
               backgroundColor: "#0d303d",
               color: "#ede7df",

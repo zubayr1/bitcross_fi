@@ -16,16 +16,16 @@ export const tokenOptions = [
   },
 ];
 
-export const expiryOptions = [
+export const limitOrderOptions = [
   {
-    key: "never",
-    text: "never",
-    value: "never",
+    key: "buy",
+    text: "Buy",
+    value: "buy",
   },
   {
-    key: "1 hour",
-    text: "1 hour",
-    value: "1 hour",
+    key: "sell",
+    text: "Sell",
+    value: "sell",
   },
 ];
 

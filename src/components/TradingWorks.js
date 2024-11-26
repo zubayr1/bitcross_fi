@@ -12,7 +12,7 @@ import { Grid } from "semantic-ui-react";
 
 import axios from "axios";
 
-import { tokenOptions, expiryOptions, dcaOptions } from "./options";
+import { tokenOptions, limitOrderOptions, dcaOptions } from "./options";
 import Perps from "./Perps";
 
 function TradingWorks({ account = null }) {
@@ -27,8 +27,8 @@ function TradingWorks({ account = null }) {
     tokenOptions[1].value
   );
 
-  const [selectedValueExpiry, setSelectedValueExpiry] = useState(
-    expiryOptions[0].value
+  const [selectedValueLimitOrder, setSelectedValueLimitOrder] = useState(
+    limitOrderOptions[0].value
   );
 
   const [selecteddcaOptions, setSelecteddcaOptions] = useState(
@@ -219,13 +219,13 @@ function TradingWorks({ account = null }) {
                     <LimitOrder
                       account={account}
                       tokenOptions={tokenOptions}
-                      expiryOptions={expiryOptions}
+                      limitOrderOptions={limitOrderOptions}
                       selectedValueSend={selectedValueSend}
                       selectedValueReceive={selectedValueReceive}
-                      selectedValueExpiry={selectedValueExpiry}
+                      selectedValueLimitOrder={selectedValueLimitOrder}
                       setSelectedValueSend={setSelectedValueSend}
                       setSelectedValueReceive={setSelectedValueReceive}
-                      setSelectedValueExpiry={setSelectedValueExpiry}
+                      setSelectedValueLimitOrder={setSelectedValueLimitOrder}
                     />
                   </Grid.Column>
                 </Grid.Row>
@@ -235,13 +235,13 @@ function TradingWorks({ account = null }) {
                     <LimitOrder
                       account={account}
                       tokenOptions={tokenOptions}
-                      expiryOptions={expiryOptions}
+                      limitOrderOptions={limitOrderOptions}
                       selectedValueSend={selectedValueSend}
                       selectedValueReceive={selectedValueReceive}
-                      selectedValueExpiry={selectedValueExpiry}
+                      selectedValueLimitOrder={selectedValueLimitOrder}
                       setSelectedValueSend={setSelectedValueSend}
                       setSelectedValueReceive={setSelectedValueReceive}
-                      setSelectedValueExpiry={setSelectedValueExpiry}
+                      setSelectedValueLimitOrder={setSelectedValueLimitOrder}
                     />
                   </Grid.Column>
                 </Grid.Row>
