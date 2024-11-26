@@ -370,21 +370,43 @@ function Swap({ account = null, tokenOptions }) {
         </div>
       </div>
 
-      <Button
-        className="custom-button"
-        style={{
-          marginTop: "3%",
-          width: "100%",
-          borderRadius: "4px",
-          padding: "2%",
-          backgroundColor: "#2b2d19",
-          color: "#ede7df",
-          fontFamily: "'Raleway', sans-serif",
-          fontSize: "1.6rem",
-        }}
-      >
-        Swap
-      </Button>
+      <Grid centered style={{ marginTop: "2%" }}>
+        <Grid.Column width={8}>
+          <Button
+            className="connect-button"
+            style={{
+              marginTop: "3%",
+              width: "100%",
+              borderRadius: "4px",
+              padding: "2%",
+              backgroundColor: "#2b2d19",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+              fontSize: "1.6rem",
+            }}
+          >
+            Swap from Pool
+          </Button>
+        </Grid.Column>
+
+        <Grid.Column width={8}>
+          <Button
+            className="connect-button"
+            style={{
+              marginTop: "3%",
+              width: "100%",
+              borderRadius: "4px",
+              padding: "2%",
+              backgroundColor: "#2b2d19",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+              fontSize: "1.6rem",
+            }}
+          >
+            Swap from Vault
+          </Button>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 

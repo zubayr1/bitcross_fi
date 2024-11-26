@@ -22,3 +22,38 @@
     border-color: #a6bdbe !important;
     background-color: #0d303d !important;
 }
+
+
+.ui.connect-button {
+    background-image: linear-gradient(to bottom, #060910, #162125, #060910) !important;
+    color: white !important;
+    border: 2px solid #6f8586 !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.ui.connect-button:hover {
+    border-color: #a6bdbe !important;
+    background-image: linear-gradient(to bottom, #162125, #1f2d30, #162125) !important;
+}
+
+/* Default font size for computers */
+.ui.button.connect-button {
+    font-size: 1.6rem !important;
+    padding: 2% !important;
+}
+
+/* For tablets (max-width: 991px) */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    .ui.button.connect-button {
+        font-size: 1.4rem !important;
+        padding: 3% !important;
+    }
+}
+
+/* For mobile (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+    .ui.button.connect-button {
+        font-size: 1.1rem !important;
+        padding: 3% !important;
+    }
+}

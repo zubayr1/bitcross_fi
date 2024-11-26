@@ -41,3 +41,15 @@ export const dcaOptions = [
   { key: "hour", text: "hour", value: "hour" },
   { key: "day", text: "day", value: "day" },
 ];
+
+export const liquidityOptions = [
+  { key: "add", text: "Add Liquidity", value: "add" },
+  { key: "remove", text: "Remove Liquidity", value: "remove" },
+  { key: "adjust", text: "Adjust Liquidity", value: "adjust" },
+];
+
+export const stakeOptions = [
+  { key: "stake", text: "Stake Tokens", value: "stake" },
+  { key: "unstake", text: "Unstake Tokens", value: "unstake" },
+  { key: "claim", text: "Claim Tokens", value: "claim" },
+];

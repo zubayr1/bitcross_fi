@@ -2,14 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { useModal } from "./ModalContext";
 
-import {
-  Grid,
-  Message,
-  Dropdown,
-  Input,
-  Button,
-  Radio,
-} from "semantic-ui-react";
+import { Grid, Message, Dropdown, Input, Button } from "semantic-ui-react";
+
+import { liquidityOptions } from "./options";
 
 import "./methods.css";
 import "./buttonstyle.css";
@@ -23,11 +18,12 @@ function Pool({ account = null, tokenOptions }) {
 
   const [selectedValue, setSelectedValue] = useState(tokenOptions[0].value);
 
-  const [isToggled, setIsToggled] = useState(false);
+  const [selectedLiquidityValue, setSelectedLiquidityValue] = useState(
+    liquidityOptions[0].value
+  );
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      // If clicked outside the divs container, remove the highlight
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target)
@@ -43,7 +39,6 @@ function Pool({ account = null, tokenOptions }) {
   }, []);
 
   const handleClick = (id) => {
-    // Set the clicked div as the only highlighted div
     setHighlightedDivId(id);
   };
 
@@ -51,8 +46,8 @@ function Pool({ account = null, tokenOptions }) {
     setSelectedValue(value);
   };
 
-  const handleToggle = () => {
-    setIsToggled(!isToggled);
+  const handleChangeLiquidity = (e, { value }) => {
+    setSelectedLiquidityValue(value);
   };
 
   let nested_layout = (
@@ -79,20 +74,23 @@ function Pool({ account = null, tokenOptions }) {
             marginBottom: 0,
           }}
         >
-          Add or Remove liquidity
+          Liquidity Management
         </p>
 
         <div style={{ textAlign: "right" }}>
-          <p
+          <Dropdown
+            fluid
+            selection
+            options={liquidityOptions}
+            value={selectedLiquidityValue}
+            onChange={handleChangeLiquidity}
             style={{
+              backgroundColor: "#0d303d",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
-              marginBottom: "5px",
+              width: "auto",
             }}
-          >
-            {isToggled ? "Toggle back to Remove" : "Toggle to Add"}
-          </p>
-          <Radio toggle checked={isToggled} onChange={handleToggle} />
+          />
         </div>
       </div>
 
@@ -143,21 +141,41 @@ function Pool({ account = null, tokenOptions }) {
         </div>
       </div>
 
-      <Button
-        className="custom-button"
-        style={{
-          marginTop: "3%",
-          width: "100%",
-          borderRadius: "4px",
-          padding: "2%",
-          backgroundColor: "#2b2d19",
-          color: "#ede7df",
-          fontFamily: "'Raleway', sans-serif",
-          fontSize: "1.6rem",
-        }}
-      >
-        {isToggled ? "Add Liquidity" : "Remove Liquidity"}
-      </Button>
+      <Grid centered style={{ marginTop: "2%" }}>
+        <Grid.Column width={8}>
+          <Button
+            className="connect-button"
+            style={{
+              marginTop: "3%",
+              width: "100%",
+              borderRadius: "4px",
+              padding: "2%",
+              backgroundColor: "#2b2d19",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+            }}
+          >
+            Proceed with Pool
+          </Button>
+        </Grid.Column>
+
+        <Grid.Column width={8}>
+          <Button
+            className="connect-button"
+            style={{
+              marginTop: "3%",
+              width: "100%",
+              borderRadius: "4px",
+              padding: "2%",
+              backgroundColor: "#2b2d19",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+            }}
+          >
+            Proceed with Vault
+          </Button>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 
@@ -200,7 +218,7 @@ function Pool({ account = null, tokenOptions }) {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Pool
+            Liquidity
           </p>
         </Grid.Row>
         <Grid.Row only="tablet">
@@ -211,7 +229,7 @@ function Pool({ account = null, tokenOptions }) {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Pool
+            Liquidity
           </p>
         </Grid.Row>
         <Grid.Row only="mobile">
@@ -222,7 +240,7 @@ function Pool({ account = null, tokenOptions }) {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            Pool
+            Liquidity
           </p>
         </Grid.Row>
 

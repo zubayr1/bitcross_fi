@@ -2,14 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { useModal } from "./ModalContext";
 
-import {
-  Grid,
-  Message,
-  Dropdown,
-  Input,
-  Radio,
-  Button,
-} from "semantic-ui-react";
+import { Grid, Message, Dropdown, Input, Button } from "semantic-ui-react";
+
+import { stakeOptions } from "./options";
 
 import "./methods.css";
 import "./buttonstyle.css";
@@ -23,11 +18,12 @@ function Stake({ account = null, tokenOptions }) {
 
   const [selectedValue, setSelectedValue] = useState(tokenOptions[0].value);
 
-  const [isToggled, setIsToggled] = useState(false);
+  const [selectedStakeValue, setSelectedStakeValue] = useState(
+    stakeOptions[0].value
+  );
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      // If clicked outside the divs container, remove the highlight
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target)
@@ -43,7 +39,6 @@ function Stake({ account = null, tokenOptions }) {
   }, []);
 
   const handleClick = (id) => {
-    // Set the clicked div as the only highlighted div
     setHighlightedDivId(id);
   };
 
@@ -51,15 +46,15 @@ function Stake({ account = null, tokenOptions }) {
     setSelectedValue(value);
   };
 
-  const handleToggle = () => {
-    setIsToggled(!isToggled);
+  const handleChangeStake = (e, { value }) => {
+    setSelectedStakeValue(value);
   };
 
   let nested_layout = (
     <div
       style={{
         backgroundColor: "#162125",
-        padding: "2%",
+        padding: "5%",
         borderRadius: "10px",
       }}
     >
@@ -79,20 +74,23 @@ function Stake({ account = null, tokenOptions }) {
             marginBottom: 0,
           }}
         >
-          Stake or Unstake
+          Stake Management
         </p>
 
         <div style={{ textAlign: "right" }}>
-          <p
+          <Dropdown
+            fluid
+            selection
+            options={stakeOptions}
+            value={selectedStakeValue}
+            onChange={handleChangeStake}
             style={{
+              backgroundColor: "#0d303d",
               color: "#ede7df",
               fontFamily: "'Raleway', sans-serif",
-              marginBottom: "5px",
+              width: "auto",
             }}
-          >
-            {isToggled ? "Toggle back to Unstake" : "Toggle to Stake"}
-          </p>
-          <Radio toggle checked={isToggled} onChange={handleToggle} />
+          />
         </div>
       </div>
 
@@ -110,6 +108,7 @@ function Stake({ account = null, tokenOptions }) {
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <Dropdown
+            disabled={selectedStakeValue === "claim"}
             fluid
             selection
             options={tokenOptions}
@@ -125,6 +124,7 @@ function Stake({ account = null, tokenOptions }) {
           />
 
           <Input
+            disabled={selectedStakeValue === "claim"}
             className="inputContent"
             placeholder="0.00"
             size="mini"
@@ -156,7 +156,7 @@ function Stake({ account = null, tokenOptions }) {
           fontSize: "1.6rem",
         }}
       >
-        {isToggled ? "Stake" : "Unstake"}
+        Proceed
       </Button>
     </div>
   );
@@ -190,56 +190,54 @@ function Stake({ account = null, tokenOptions }) {
   }
 
   return (
-    <div>
-      <div style={{ paddingBottom: "2%" }}>
-        <Grid centered>
-          <Grid.Row only="computer">
-            <p
-              style={{
-                fontSize: "2.5rem",
-                color: "#ede7df",
-                fontFamily: "'Raleway', sans-serif",
-              }}
-            >
-              Stake
-            </p>
-          </Grid.Row>
-          <Grid.Row only="tablet">
-            <p
-              style={{
-                fontSize: "2rem",
-                color: "#ede7df",
-                fontFamily: "'Raleway', sans-serif",
-              }}
-            >
-              Stake
-            </p>
-          </Grid.Row>
-          <Grid.Row only="mobile">
-            <p
-              style={{
-                fontSize: "1.5rem",
-                color: "#ede7df",
-                fontFamily: "'Raleway', sans-serif",
-              }}
-            >
-              Stake
-            </p>
-          </Grid.Row>
+    <div style={{ paddingBottom: "2%" }}>
+      <Grid centered>
+        <Grid.Row only="computer">
+          <p
+            style={{
+              fontSize: "2.5rem",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+            }}
+          >
+            Stake
+          </p>
+        </Grid.Row>
+        <Grid.Row only="tablet">
+          <p
+            style={{
+              fontSize: "2rem",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+            }}
+          >
+            Stake
+          </p>
+        </Grid.Row>
+        <Grid.Row only="mobile">
+          <p
+            style={{
+              fontSize: "1.5rem",
+              color: "#ede7df",
+              fontFamily: "'Raleway', sans-serif",
+            }}
+          >
+            Stake
+          </p>
+        </Grid.Row>
 
-          <Grid.Row centered>
-            <Grid.Column only="computer" width={8}>
-              {layout}
-            </Grid.Column>
-            <Grid.Column only="tablet" width={12}>
-              {layout}
-            </Grid.Column>
-            <Grid.Column only="mobile" width={14}>
-              {layout}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div>
+        <Grid.Row centered>
+          <Grid.Column only="computer" width={8}>
+            {layout}
+          </Grid.Column>
+          <Grid.Column only="tablet" width={12}>
+            {layout}
+          </Grid.Column>
+          <Grid.Column only="mobile" width={14}>
+            {layout}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 }
